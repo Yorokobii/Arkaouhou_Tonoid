@@ -5,6 +5,7 @@ var cheight;
 var stage;
 
 var obj;
+var player;
 
 //*****************init function**************
 function init(){
@@ -21,6 +22,9 @@ function init(){
 	/////////////
 
 	obj = new Object("../ressources/test.jpg");
+	obj.draw(stage);
+	player = new Player("../ressources/test2.jpg");
+	player.draw(stage);
 
 	stage.update();
 	gameLoop();
@@ -31,7 +35,8 @@ function init(){
 //**************gameLoop*********************
 function gameLoop() {
 
-	
+	obj.testMove(cwidth);
+	player.testMove(cheight);
 
 	stage.update();
 	setTimeout(gameLoop, 10);
