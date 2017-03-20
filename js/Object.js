@@ -29,7 +29,7 @@ class Object{
 
 	//test function, makes the obj move horizontally
 	testMove(cwidth){
-		if(!hidden()){
+		if(this.hidden()){
 			if(this.bitmap.x > (cwidth - this.bounds.width) && this.dir) this.dir = !this.dir;
 			else if(this.bitmap.x < 0 && !this.dir) this.dir = !this.dir;
 	
