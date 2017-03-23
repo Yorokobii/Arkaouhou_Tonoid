@@ -15,6 +15,10 @@ class Player{
 	    this.dir = true;
 	}
 
+	initialPlace(){
+		
+	}
+
 	draw(_stage){
 		_stage.addChild(this.hitboxPJ);
 	}
