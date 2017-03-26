@@ -6,7 +6,7 @@ class Object{
 		//////////
 
 	    //load the bitmap
-	    this.bitmap = new createjs.Bitmap(_img);
+	    this.bitmap = new createjs.Bitmap("../ressources/test.jpg");
 
 	    this.bounds = this.bitmap.getBounds();
 

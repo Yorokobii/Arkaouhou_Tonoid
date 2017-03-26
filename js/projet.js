@@ -38,7 +38,7 @@ function init(){
 function gameLoop() {
 
 	obj.testMove(cwidth);
-	player.testMove(cheight);
+	player.testMove();
 
 	stage.update();
 	setTimeout(gameLoop, 10);
