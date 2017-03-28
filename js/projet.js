@@ -15,7 +15,7 @@ function init(){
 	cwidth = window.innerWidth/5;
 	WorldObject.cwidth = cwidth;
 	canvas.width = cwidth;
-	cheight = window.innerHeight;
+	cheight = window.innerHeight-4; // magic !!!
 	WorldObject.cheight = cheight;
 	canvas.height = cheight;
 	canvas.style.marginLeft = ((window.innerWidth/2) - (cwidth/2)) + "px";

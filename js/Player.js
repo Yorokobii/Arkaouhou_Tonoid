@@ -13,16 +13,24 @@ class Player{
 		//load the bitmap
 		this.hitboxPJ = new createjs.Bitmap("../ressources/player_hitboxPJ.jpg");
 		this.hitboxB = new createjs.Bitmap("../ressources/player_hitboxB.jpg");
-		this.PJbounds = this.hitboxPJ.getBounds();
-		this.Bbounds = this.hitboxB.getBounds();
-		//places the bitmap
-		this.hitboxPJ.setTransform(WorldObject.cwidth/2-this.PJbounds.width/2, WorldObject.cheight - (WorldObject.cheight/10));
-		this.hitboxB.setTransform(WorldObject.cwidth/2-this.Bbounds.width/2, WorldObject.cheight - (WorldObject.cheight/10));
 
-		
+		this.hitboxPJ.image.onload = () => {
+			this.PJbounds = this.hitboxPJ.getBounds();
+			this.hitboxPJ.setTransform(WorldObject.cwidth/2-this.PJbounds.width/2, WorldObject.cheight - (WorldObject.cheight/10));
+		}
 
-		document.onkeydown = function(e) {this.keys[e.keyCode] = true;};
-		document.onkeyup = function(e) {this.keys[e.keyCode] = false;};
+		this.hitboxB.image.onload = () => {
+			this.Bbounds = this.hitboxB.getBounds();
+			//places the bitmap
+			this.hitboxB.setTransform(WorldObject.cwidth/2-this.Bbounds.width/2, WorldObject.cheight - (WorldObject.cheight/10));
+		}
+
+
+
+
+
+		document.onkeydown = (e) =>  {this.keys[e.keyCode] = true;};
+		document.onkeyup = (e) => {this.keys[e.keyCode] = false;};
 
 
 
@@ -55,7 +63,7 @@ class Player{
 				this.direction = 1;
 				break;
 		}*/
-		console.log(this.direction);
+		// console.log(this.direction);
 	}
 
 	initialPlace(){
@@ -69,7 +77,7 @@ class Player{
 	}
 
 	Handling(){
-		console.log(this.direction);
+		// console.log(this.direction);
 		//move
 		this.keyPressed();
 		this.hitboxB.x += this.direction;
