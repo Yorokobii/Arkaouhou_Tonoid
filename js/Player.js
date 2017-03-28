@@ -41,29 +41,21 @@ class Player{
 	keyPressed(){
 
 		if(this.keys[37])//left key
-			this.direction = -10;
+			if(!this.keys[16])
+				this.direction = -2;
+			else
+				this.direction = -4;
+
 		if(this.keys[39])//right key
-			this.direction = 10;
+			if(!this.keys[16])
+				this.direction = 2;
+			else
+				this.direction = 4;
+
 		if(!this.keys[37] && !this.keys[39]) this.direction = 0;
 
-		if(this.keys[32])
+		if(this.keys[32] && this.active_bar<=0)
 			this.active_bar = 50;
-
-		/*switch(event.keyCode) {
-			case 37: //left key
-				this.direction = -10;
-				break;
-			case 39: //right key
-				this.direction = 10;
-				break;
-			case 32:
-				this.active_bar = 50;
-				break;
-			default:
-				this.direction = 1;
-				break;
-		}*/
-		// console.log(this.direction);
 	}
 
 	initialPlace(){
@@ -77,7 +69,6 @@ class Player{
 	}
 
 	Handling(){
-		// console.log(this.direction);
 		//move
 		this.keyPressed();
 		this.hitboxB.x += this.direction;
@@ -85,13 +76,13 @@ class Player{
 
 		//display ball bar
 		if(this.active_bar > 0){
-			//this.hitboxB.visible = true;
+			this.hitboxB.visible = true;
 			this.active_bar -= 1;
 		}
 		else{
 			if(this.active_bar == 0){
 				this.active_bar-=1;
-				//this.hitboxB.visible = false;
+				this.hitboxB.visible = false;
 			}
 		}
 	}
@@ -99,17 +90,6 @@ class Player{
 	//test function, makes the obj move horizontally
 	testMove(){
 		this.Handling();
-		/*if(this.hitboxB.x > (WorldObject.cwidth - this.Bbounds.width) && this.dir) this.dir = !this.dir;
-		else if(this.hitboxB.x < 0 && !this.dir) this.dir = !this.dir;
-
-		if(this.dir){
-			this.hitboxB.setTransform(this.hitboxB.x+1, this.hitboxB.y); //move ball bar
-			this.hitboxPJ.setTransform(this.hitboxPJ.x+1, this.hitboxPJ.y); //move PJ bar
-		}
-		else{
-			this.hitboxB.setTransform(this.hitboxB.x-1, this.hitboxB.y);//move ball bar
-			this.hitboxPJ.setTransform(this.hitboxPJ.x-1, this.hitboxPJ.y); //move PJ bar
-		}*/
 	}
 
 }
