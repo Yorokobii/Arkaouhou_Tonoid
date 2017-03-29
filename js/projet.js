@@ -6,6 +6,7 @@ var stage;
 
 var obj;
 var player;
+var npb;
 
 //*****************init function**************
 function init(){
@@ -26,6 +27,10 @@ function init(){
 	player = new Player("../ressources/test2.jpg");
 	player.draw(stage);
 
+	//création de la NPB (modif)
+	npb = new NPB("../ressources/npb.png");
+	npb.draw(stage);
+
 	stage.update();
 	gameLoop();
 }
@@ -37,6 +42,7 @@ function gameLoop() {
 
 	obj.testMove(cwidth);
 	player.testMove(cheight);
+	npb.testMove(cwidth);
 
 	stage.update();
 	setTimeout(gameLoop, 10);

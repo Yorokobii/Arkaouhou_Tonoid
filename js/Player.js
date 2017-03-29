@@ -27,5 +27,4 @@ class Player{
 		if(this.dir) this.hitboxPJ.setTransform(0, this.hitboxPJ.y+1);
 		else this.hitboxPJ.setTransform(0, this.hitboxPJ.y-1);
 	}
-
 }
