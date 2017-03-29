@@ -10,6 +10,7 @@ class Level{
 		this.bricks_on_width = 10;
 		this.bricks_on_height = 10;
 
+		//liste/tableau de projectiles
 		//////////
 	}
 
@@ -20,6 +21,7 @@ class Level{
 		levels.append(level2(cwidth, cheight));
 		levels.append(level3(cwidth, cheight));
 		return levels
+
 	}
 
 

@@ -40,6 +40,14 @@ function gameLoop() {
 	obj.testMove(cwidth);
 	player.testMove(cheight);
 
+	//déplacement -> collision -> correction
+	//Déplacement: Move d'un frame pour tous les NPB + input joueur
+
+
+	//Collision: Collision Balle-Briques, Balle-Player, Proj-hauteurif->Player/map, 
+
+	//Correction: Briques.lvl -1/remove, Player.life -1/Game OVer, clean proj outside map, Balle direction and position
+
 	stage.update();
 	setTimeout(gameLoop, 10);
 }
