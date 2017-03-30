@@ -6,14 +6,14 @@ class Player{
 		this.PJbounds;
 		this.Bbounds;
 		this.direction = 0; //-1 left 0 no movement 1 right
-		this.active_bar = -100; //ball bar activation timer
+		this.active_bar = -50; //ball bar activation timer
 		this.space_raised = true;
 		this.keys = [];
 		//////////
 
 		//load the bitmap
-		this.hitboxPJ = new createjs.Bitmap("../ressources/player_hitboxPJ.jpg");
-		this.hitboxB = new createjs.Bitmap("../ressources/player_hitboxB.jpg");
+		this.hitboxPJ = new createjs.Bitmap("../ressources/core.png");
+		this.hitboxB = new createjs.Bitmap("../ressources/bar.png");
 
 		this.hitboxPJ.image.onload = () => {
 			this.PJbounds = this.hitboxPJ.getBounds();
@@ -36,13 +36,13 @@ class Player{
 
 	keyPressed(){
 
-		if(this.keys[37] && this.hitboxPJ.x > 5)//left key
+		if(this.keys[37] && !this.keys[39] && this.hitboxPJ.x > 5)//left key
 			if(!this.keys[16])
 				this.direction = -2;
 			else
 				this.direction = -4;
 
-		if(this.keys[39] && this.hitboxPJ.x < WorldObject.cwidth-this.PJbounds.width-5)//right key
+		if(this.keys[39] && !this.keys[37] && this.hitboxPJ.x < WorldObject.cwidth-this.PJbounds.width-5)//right key
 			if(!this.keys[16])
 				this.direction = 2;
 			else
@@ -50,7 +50,7 @@ class Player{
 
 		if((!this.keys[37] || this.hitboxPJ.x < 5) && (!this.keys[39] || this.hitboxPJ.x > WorldObject.cwidth-this.PJbounds.width-5)) this.direction = 0;
 
-		if(this.keys[32] && this.active_bar<=-100 && this.space_raised){
+		if(this.keys[32] && this.active_bar<=-50 && this.space_raised){
 			this.active_bar = 50;
 			this.space_raised = false;
 		}

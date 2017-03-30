@@ -20,7 +20,7 @@ class Brick extends Object{
 		}
 	}
 
-	// collision
+	// takes the ball as argument and returns true if the brick is a level 0, else false
 	ball_collision(ball){
 		var rect = ball.bitmap.getBounds().intersection(this.ball.getBounds());
 		if(rect != null){//intersection
@@ -32,7 +32,7 @@ class Brick extends Object{
 				ball.direction.x = -ball.direction.x;
 			}			
 			//throw pattern
-			var pattern = new Pattern(this.level);
+			Pattern.new(this.level);
 			this.level--;
 			if(this.level == 0){
 				return true;
@@ -41,7 +41,7 @@ class Brick extends Object{
 				var _x = this.bitmap.x;
 				var _y = this.bitmap.y;
 
-				this.new_brick(this.level, _x, _y);
+				this.new_brick(this.level, _x, _y); //loads the bitmap for the corresponding level
 				return false;		
 			}
 		}

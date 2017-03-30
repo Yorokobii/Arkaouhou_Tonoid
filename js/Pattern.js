@@ -1,7 +1,5 @@
 class Pattern{
-	constructor(_level){
-		//atributes
-		
+	static new(_level){
 		if(_level == 1){
 			WorldObject.pjs.append(new PJ(/*Xpos, Ypos, direction, speed, creation_time*/));
 			WorldObject.pjs.append(new PJ(/*Xpos, Ypos, direction, speed, creation_time*/));
