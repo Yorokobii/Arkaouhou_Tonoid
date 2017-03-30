@@ -1,7 +1,7 @@
 class NPB extends Object{
 	constructor(_img){
 		//atributes
-		super();
+		super(_img);
 		this.speed;
 
 		this.bitmap = new createjs.Bitmap(_img);
