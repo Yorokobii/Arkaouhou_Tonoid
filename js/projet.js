@@ -4,7 +4,6 @@ var cwidth;
 var cheight;
 var stage;
 
-var obj;
 var player;
 var npb;
 
@@ -24,9 +23,7 @@ function init(){
 	stage = new createjs.Stage("ProjectCanvas");
 	/////////////
 
-	obj = new Object("../ressources/test.jpg");
-	obj.draw(stage);
-	player = new Player("../ressources/test2.jpg");
+	player = new Player();
 	player.draw(stage);
 
 	//création de la NPB (modif)
@@ -42,9 +39,8 @@ function init(){
 //**************gameLoop*********************
 function gameLoop() {
 
-	obj.testMove(cwidth);
-	player.testMove();
-	npb.testMove(cwidth);
+	player.Handling();
+	npb.testMove();
 
 	//déplacement -> collision -> correction
 	//Déplacement: Move d'un frame pour tous les NPB + input joueur
