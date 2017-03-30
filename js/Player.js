@@ -1,5 +1,5 @@
 class Player{
-	constructor(_img){
+	constructor(){
 		//atributes
 		this.hitboxPJ; //hitbox projectiles
 		this.hitboxB; //hitbox ball

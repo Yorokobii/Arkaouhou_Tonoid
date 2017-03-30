@@ -3,17 +3,9 @@ class Brick extends Object{
 		//atributes
 		super("../ressources/brick_level_" + _level + ".jpg");
 
+		this.bitmap.setTransform(_x, _y);
+
 		this.level = _level;
-
-		/*
-		this.bitmap = new createjs.Bitmap(this.level_img);
-
-		this.bitmap.image.onload = () => {
-			console.log("test");
-			this.bounds = this.bitmap.getBounds();
-			//places the bitmap
-			this.bitmap.setTransform(_x, _y);
-		}*/
 	}
 
 	new_brick(_level, _x, _y){
