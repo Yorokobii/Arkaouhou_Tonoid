@@ -2,9 +2,9 @@ class NPB extends Object{
 	constructor(_img){
 		//atributes
 		super(_img);
-		this.speed = 1;
-		this.maxSpeed = 5;
-		this.directionX = 0;
+		this.speed = 3;
+		this.maxSpeed = 3;
+		this.directionX = 1;
 		this.directionY = (-1);
 
 		this.bitmap.setTransform(WorldObject.cwidth/2 - 12,  
@@ -17,21 +17,31 @@ class NPB extends Object{
 	}
 
 	wallCollision(){
-			//vertical
-			if(this.bitmap.y < 0 && this.directionY < 0){
-				this.directionY = (-this.directionY);
-			}
-			else if(this.bitmap.y > WorldObject.cheight && this.directionY > 0){
-				console.log("yes");//this.directionY = (-this.directionY);
-			}
+			if(this.loaded){
 
-			//horizontal
+				//vertical
+				if(this.bitmap.y < 0 && this.directionY < 0){
+					this.directionY = (-this.directionY);
+				}
 
-			
+				else if(this.bitmap.y > (WorldObject.cheight - this.bounds.height) && this.directionY > 0){
+					this.directionY = (-this.directionY);
+					if(this.speed>1) this.speed-=0.5;
+				}
+
+				//horizontal
+				else if(this.bitmap.x < 0 && this.directionX < 0){
+					this.directionX = (-this.directionX);
+				}
+
+				else if(this.bitmap.x > (WorldObject.cwidth - this.bounds.width) && this.directionX > 0){
+					this.directionX = (-this.directionX);
+				}
+			}
 	}
 
 	move(){
-		if(this.bitmap.y < 0) this.directionY = 1;
+		this.wallCollision();
 		this.bitmap.setTransform(this.bitmap.x+(this.directionX*this.speed),this.bitmap.y+(this.directionY*this.speed));
 	}
 
