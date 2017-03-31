@@ -39,7 +39,7 @@ function init(){
 //**************gameLoop*********************
 function gameLoop() {
 
-	player.Handling();
+	player.Handling(npb);
 	npb.testMove();
 
 	//déplacement -> collision -> correction
