@@ -27,7 +27,7 @@ function init(){
 	player.draw(stage);
 
 	//création de la NPB (modif)
-	npb = new NPB("../ressources/npb.png");
+	npb = new NPB("../ressources/npb2.png");
 	npb.draw(stage);
 
 	stage.update();
@@ -40,8 +40,7 @@ function init(){
 function gameLoop() {
 
 	player.Handling();
-	npb.testMove();
-
+	npb.move();
 	//déplacement -> collision -> correction
 	//Déplacement: Move d'un frame pour tous les NPB + input joueur
 

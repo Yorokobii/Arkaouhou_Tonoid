@@ -1,5 +1,5 @@
 class Object{
-	constructor(_img){
+	constructor(_img,x,y){
 		//atributes
 		this.bitmap;
 		this.bounds;
