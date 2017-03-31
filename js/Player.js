@@ -104,7 +104,7 @@ class Player{
 
 	Handling(ball){
 		//ball collision
-		ball_collision(ball);
+		this.ball_collision(ball);
 
 		//move
 		this.keyPressed();
