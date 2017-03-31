@@ -1,5 +1,5 @@
 class Object{
-	constructor(_img){
+	constructor(_img,x,y){
 		//atributes
 		this.bitmap;
 		this.bounds;
@@ -7,13 +7,13 @@ class Object{
 		//////////
 
 	    //load the bitmap
-	    this.bitmap = new createjs.Bitmap("../ressources/test.jpg");
+	    this.bitmap = new createjs.Bitmap(_img);
 	    this.bitmap.image.onload = () => {
 	    	this.bounds = this.bitmap.getBounds();
 	    	this.loaded = true;
 	    }
 
-
+	    //test bool
 	    this.dir = true;
 	}
 
@@ -21,19 +21,9 @@ class Object{
 		_stage.addChild(this.bitmap);
 	}
 
-	//hides or displays the bitmap
-	hide(bool){
-		this.bitmap.visible = bool;
-	}
-
-	//return true if hidden else false
-	hidden(){
-		return this.bitmap.visible;
-	}
-
 	//test function, makes the obj move horizontally
-	testMove(cwidth) {
-		if(this.hidden() && this.loaded){
+	testMove() {
+		if(this.loaded){
 			if(this.bitmap.x > (cwidth - this.bounds.width) && this.dir) this.dir = !this.dir;
 			else if(this.bitmap.x < 0 && !this.dir) this.dir = !this.dir;
 

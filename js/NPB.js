@@ -1,17 +1,49 @@
 class NPB extends Object{
 	constructor(_img){
 		//atributes
-		super();
-		this.speed;
+		super(_img);
+		this.speed = 3;
+		this.maxSpeed = 3;
+		this.directionX = 1;
+		this.directionY = (-1);
 
-		this.bitmap = new createjs.Bitmap(_img);
-
-	    this.bounds = this.bitmap.getBounds();
-
-	    this.dir = false;
+		this.bitmap.setTransform(WorldObject.cwidth/2 - 12,  
+				                (WorldObject.cheight - (WorldObject.cheight/10)) - 24);
 	}
 
-	draw(_stage){
-		_stage.addChild(this.bitmap);
+	initialPlace(){
+		this.bitmap.setTransform(WorldObject.cwidth/2 - 12,  
+				                (WorldObject.cheight - (WorldObject.cheight/10)) - 24);
 	}
+
+	wallCollision(){
+			if(this.loaded){
+
+				//vertical
+				if(this.bitmap.y < 0 && this.directionY < 0){
+					this.directionY = (-this.directionY);
+				}
+
+				else if(this.bitmap.y > (WorldObject.cheight - this.bounds.height) && this.directionY > 0){
+					this.directionY = (-this.directionY);
+					if(this.speed>1) this.speed-=0.5;
+				}
+
+				//horizontal
+				else if(this.bitmap.x < 0 && this.directionX < 0){
+					this.directionX = (-this.directionX);
+				}
+
+				else if(this.bitmap.x > (WorldObject.cwidth - this.bounds.width) && this.directionX > 0){
+					this.directionX = (-this.directionX);
+				}
+			}
+	}
+
+	move(){
+		this.wallCollision();
+		this.bitmap.setTransform(this.bitmap.x+(this.directionX*this.speed),this.bitmap.y+(this.directionY*this.speed));
+	}
+
+
 }

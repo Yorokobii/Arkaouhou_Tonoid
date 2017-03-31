@@ -4,7 +4,6 @@ var cwidth;
 var cheight;
 var stage;
 
-var obj;
 var player;
 var npb;
 
@@ -24,13 +23,11 @@ function init(){
 	stage = new createjs.Stage("ProjectCanvas");
 	/////////////
 
-	obj = new Object("../ressources/test.jpg");
-	obj.draw(stage);
-	player = new Player("../ressources/test2.jpg");
+	player = new Player();
 	player.draw(stage);
 
 	//création de la NPB (modif)
-	npb = new NPB("../ressources/npb.png");
+	npb = new NPB("../ressources/npb2.png");
 	npb.draw(stage);
 
 	stage.update();
@@ -43,10 +40,11 @@ function init(){
 function gameLoop() {
 
 
+
 	//déplacement -> collision -> correction
-	obj.testMove(cwidth);
-	player.testMove();
-	npb.testMove(cwidth);
+	player.Handling(npb);
+	npb.move();
+
 
 	//Collision: Collision Balle-Briques, Balle-Player, Proj-hauteurif->, 
 	
