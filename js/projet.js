@@ -13,7 +13,7 @@ function init(){
 	//canvas
 	canvas = document.getElementById("ProjectCanvas");
 
-	cwidth = window.innerWidth/5;
+	cwidth = window.innerWidth/3;
 	WorldObject.cwidth = cwidth;
 	canvas.width = cwidth;
 	cheight = window.innerHeight-4; // magic !!!
@@ -42,15 +42,14 @@ function init(){
 //**************gameLoop*********************
 function gameLoop() {
 
+
+	//déplacement -> collision -> correction
 	obj.testMove(cwidth);
 	player.testMove();
 	npb.testMove(cwidth);
 
-	//déplacement -> collision -> correction
-	//Déplacement: Move d'un frame pour tous les NPB + input joueur
-
-
-	//Collision: Collision Balle-Briques, Balle-Player, Proj-hauteurif->Player/map, 
+	//Collision: Collision Balle-Briques, Balle-Player, Proj-hauteurif->, 
+	
 
 	//Correction: Briques.lvl -1/remove, Player.life -1/Game OVer, clean proj outside map, Balle direction and position
 	

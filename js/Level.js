@@ -3,9 +3,6 @@ class Level{
 	constructor(cwidth, cheight){
 		//atributes
 		this.bricks = []; //array of bricks
-		for(var i=0; i<this.bricks.length; ++i){
-			this.brikcs[i] = null;
-		}
 		this.availableBricks = []; //array of bool for wich brick can be hit
 		this.bricks_on_width = 10;
 		this.bricks_on_height = 10;
