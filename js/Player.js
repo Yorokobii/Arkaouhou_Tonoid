@@ -17,13 +17,13 @@ class Player{
 
 		this.hitboxPJ.image.onload = () => {
 			this.PJbounds = this.hitboxPJ.getBounds();
-			this.hitboxPJ.setTransform(WorldObject.cwidth/2-this.PJbounds.width/2, WorldObject.cheight - (WorldObject.cheight/10));
+			this.hitboxPJ.setTransform(WorldObject.cwidth/2-this.PJbounds.width/2, WorldObject.cheight - this.PJbounds.height);
 		}
 
 		this.hitboxB.image.onload = () => {
 			this.Bbounds = this.hitboxB.getBounds();
 			//places the bitmap
-			this.hitboxB.setTransform(WorldObject.cwidth/2-this.Bbounds.width/2, WorldObject.cheight - (WorldObject.cheight/10));
+			this.hitboxB.setTransform(WorldObject.cwidth/2-this.Bbounds.width/2, WorldObject.cheight - this.Bbounds.height);
 		}
 
 		document.onkeydown = (e) =>  {this.keys[e.keyCode] = true;};
@@ -57,38 +57,48 @@ class Player{
 	}
 
 	initialPlace(){
-		this.hitboxPJ.setTransform(WorldObject.cwidth/2-this.PJbounds.width/2, WorldObject.cheight - (WorldObject.cheight/10));
-		this.hitboxB.setTransform(WorldObject.cwidth/2-this.Bbounds.width/2, WorldObject.cheight - (WorldObject.cheight/10));
+		this.hitboxPJ.setTransform(WorldObject.cwidth/2-this.PJbounds.width/2, WorldObject.cheight - this.PJbounds.height);
+		this.hitboxB.setTransform(WorldObject.cwidth/2-this.Bbounds.width/2, WorldObject.cheight - this.Bbounds.height);
 	}
 
 	//function that returns true if the player is hit by the ball, else false, if the ball touches the ballHitbox the ball's
 	//velocity is changed accordingly
 	ball_collision(ball){
-		if(ball.y>WorldObject.cheight/9){
+		if(ball.loaded && ball.bitmap.y+ball.bounds.width>=WorldObject.cheight - WorldObject.cheight/9){
 			//collision with ball without spacebar
-			if(this.active_bar<=0 && ball.bitmap.getBounds().intersects(this.hitboxPJ.getBounds())){
+			if(this.active_bar<=0 && ball.bitmap.getTransformedBounds().intersects(this.hitboxPJ.getTransformedBounds())){
 				return true;
 			}
 			else{
-				var rectangle = ball.bitmap.getBounds().intersection(this.hitboxB.getBounds());
+				var rectangle = ball.bitmap.getTransformedBounds().intersection(this.hitboxB.getTransformedBounds());
 				if(rectangle != null){//ball is touched
-					var touch_point = rectangle.x + (rectangle.width/2);
-					var ratio = (((touch_point - this.Bbounds.x)/this.Bbounds.width)*2)-1;//ratio de -1 a 1
-					var rebound_degre = ration*80;
+					
+					/*
 
-
-					ball.directionX = 1*sin(rebound_degre);
-					ball.directionY = 1*cos(rebound_degre);
-
-					var magnitude = sqrt(ball.directionX*ball.directionX + ball.directionY*ball.directionY);
-
-					//normalized
-					ball.directionX /= magnitude;
-					ball.directionY /= magnitude;
-
+					if(ball.directionY > 0) ball.directionY = -ball.directionY;
+					
 					if(ball.speed < ball.maxSpeed)
-						ball.speed++;
+							ball.speed++;
 
+					*/
+					if(ball.directionY > 0){
+						var touch_point = rectangle.x + (rectangle.width/2);
+						var ratio = (((touch_point - this.hitboxB.x)/this.Bbounds.width)*2)-1;//ratio de -1 a 1
+						var rebound_degre = ratio*80;
+
+
+						ball.directionX = 1*Math.sin(rebound_degre);
+						ball.directionY = 1*Math.cos(rebound_degre);
+
+						var magnitude = Math.sqrt(ball.directionX*ball.directionX + ball.directionY*ball.directionY);
+
+						//normalized
+						ball.directionX /= magnitude;
+						ball.directionY /= magnitude;
+
+						if(ball.speed < ball.maxSpeed)
+							ball.speed++;
+					}
 				}
 			}
 		}
