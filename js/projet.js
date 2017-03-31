@@ -39,8 +39,9 @@ function init(){
 //**************gameLoop*********************
 function gameLoop() {
 
-	player.Handling();
-	npb.move();
+	player.Handling(npb);
+	npb.testMove();
+	
 	//déplacement -> collision -> correction
 	//Déplacement: Move d'un frame pour tous les NPB + input joueur
 

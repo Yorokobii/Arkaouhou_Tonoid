@@ -77,14 +77,17 @@ class Player{
 					var rebound_degre = ration*80;
 
 
-					ball.direction.x = 1*sin(rebound_degre);
-					ball.direction.y = 1*cos(rebound_degre);
+					ball.directionX = 1*sin(rebound_degre);
+					ball.directionY = 1*cos(rebound_degre);
 
-					var magnitude = sqrt(ball.direction.x*ball.direction.x + ball.direction.y*ball.direction.y);
+					var magnitude = sqrt(ball.directionX*ball.directionX + ball.directionY*ball.directionY);
 
 					//normalized
-					ball.direction.x /= magnitude;
-					ball.direction.y /= magnitude;
+					ball.directionX /= magnitude;
+					ball.directionY /= magnitude;
+
+					if(ball.speed < ball.maxSpeed)
+						ball.speed++;
 
 				}
 			}
@@ -99,7 +102,10 @@ class Player{
 		_stage.addChild(this.hitboxPJ);
 	}
 
-	Handling(){
+	Handling(ball){
+		//ball collision
+		ball_collision(ball);
+
 		//move
 		this.keyPressed();
 		this.hitboxB.x += this.direction;
@@ -116,10 +122,5 @@ class Player{
 				this.hitboxB.visible = false;
 			}
 		}
-	}
-
-	//test function, makes the obj move horizontally
-	testMove(){
-		this.Handling();
 	}
 }
