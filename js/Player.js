@@ -73,18 +73,18 @@ class Player{
 				var rectangle = ball.bitmap.getTransformedBounds().intersection(this.hitboxB.getTransformedBounds());
 				if(rectangle != null){//ball is touched
 					
-					/*
+					
 
 					if(ball.directionY > 0) ball.directionY = -ball.directionY;
 					
 					if(ball.speed < ball.maxSpeed)
 							ball.speed++;
 
-					*/
-					if(ball.directionY > 0){
+					
+					/*if(ball.directionY > 0){
 						var touch_point = rectangle.x + (rectangle.width/2);
 						var ratio = (((touch_point - this.hitboxB.x)/this.Bbounds.width)*2)-1;//ratio de -1 a 1
-						var rebound_degre = ratio*80;
+						var rebound_degre = ratio*45;
 
 
 						ball.directionX = 1*Math.sin(rebound_degre);
@@ -98,7 +98,7 @@ class Player{
 
 						if(ball.speed < ball.maxSpeed)
 							ball.speed++;
-					}
+					}*/
 				}
 			}
 		}
