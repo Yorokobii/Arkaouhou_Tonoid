@@ -66,29 +66,23 @@ class Player{
 	ball_collision(ball){
 		if(ball.loaded && ball.bitmap.y+ball.bounds.width>=WorldObject.cheight - WorldObject.cheight/9){
 			//collision with ball without spacebar
-			if(this.active_bar<=0 && ball.bitmap.getTransformedBounds().intersects(this.hitboxPJ.getTransformedBounds())){
-				return true;
+			if(this.active_bar<=0){
+				if(ball.bitmap.getTransformedBounds().intersects(this.hitboxPJ.getTransformedBounds()))
+					return true;
+				else
+					return false;
 			}
 			else{
 				var rectangle = ball.bitmap.getTransformedBounds().intersection(this.hitboxB.getTransformedBounds());
 				if(rectangle != null){//ball is touched
-					
-					
+					if(ball.directionY > 0){
 
-					if(ball.directionY > 0) ball.directionY = -ball.directionY;
-					
-					if(ball.speed < ball.maxSpeed)
-							ball.speed++;
-
-					
-					/*if(ball.directionY > 0){
-						var touch_point = rectangle.x + (rectangle.width/2);
-						var ratio = (((touch_point - this.hitboxB.x)/this.Bbounds.width)*2)-1;//ratio de -1 a 1
+						var touch_point = ball.bitmap.x + (ball.bounds.width/2);
+						var ratio = touch_point<this.hitboxB.x ? -1 : (touch_point>this.hitboxB.x+this.Bbounds.width ? 1 : ((((touch_point - this.hitboxB.x) / this.Bbounds.width)*2)-1 ));//ratio de -1 a 1
 						var rebound_degre = ratio*45;
 
-
-						ball.directionX = 1*Math.sin(rebound_degre);
-						ball.directionY = 1*Math.cos(rebound_degre);
+						ball.directionX = Math.sin(rebound_degre*(Math.PI/180));
+						ball.directionY = -Math.cos(rebound_degre*(Math.PI/180));
 
 						var magnitude = Math.sqrt(ball.directionX*ball.directionX + ball.directionY*ball.directionY);
 
@@ -97,8 +91,9 @@ class Player{
 						ball.directionY /= magnitude;
 
 						if(ball.speed < ball.maxSpeed)
-							ball.speed++;
-					}*/
+							if(++ball.speed > ball.maxSpeed) ball.speed = ball.maxSpeed;
+
+					}
 				}
 			}
 		}
