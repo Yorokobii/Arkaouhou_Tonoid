@@ -26,7 +26,7 @@ class NPB extends Object{
 
 				else if(this.bitmap.y > (WorldObject.cheight - this.bounds.height) && this.directionY > 0){
 					this.directionY = (-this.directionY);
-					if(this.speed>1) this.speed-=0.5;
+					this.speed-=0.5;
 				}
 
 				//horizontal
