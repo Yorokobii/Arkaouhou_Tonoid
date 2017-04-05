@@ -1,25 +1,34 @@
 class PJ extends Object{
-	constructor(Xpos, Ypos, _direction, _speed, _create_time){
+	constructor(Xpos, Ypos, _angle, _speed, _create_time){ //angle from the vector (0,1)
 		//atributes
 		super("./ressources/pj.png");
-		this.speed = 3;
-		this.maxSpeed = 100;
-		this.directionX = 1;
-		this.directionY = (-1);
+		this.speed = _speed;
 
-		this.bitmap.setTransform(WorldObject.cwidth/2 - 12,  
-				                (WorldObject.cheight - (WorldObject.cheight/10)) - 24);
-	}
+		/////////direction
+		this.directionX = Math.sin(_angle*(Math.PI/180));
+		this.directionY = -Math.cos(_angle*(Math.PI/180));
 
-	initialPlace(){
-		this.bitmap.setTransform(WorldObject.cwidth/2 - 12,  
-				                (WorldObject.cheight - (WorldObject.cheight/10)) - 24);
+		var magnitude = Math.sqrt(this.directionX*this.directionX + this.directionY*this.directionY);
+		//normalized
+		this.directionX /= magnitude;
+		this.directionY /= magnitude;
+		/////////
+
+		this.create_time = _create_time;
+		this.time_alive = 0;
+
+		this.bitmap.visible = false;
+
+		this.bitmap.setTransform(Xpos, Ypos);
 	}
 
 	move(){
-		this.wallCollision();
-		this.bitmap.setTransform(this.bitmap.x+(this.directionX*this.speed),this.bitmap.y+(this.directionY*this.speed));
+		console.log(this.bitmap.x + " " + this.bitmap.y + " : " + this.time_alive + " : " + this.bitmap.visible);
+		if(this.time_alive >= this.create_time){
+			this.bitmap.visible = true;
+			this.bitmap.setTransform(this.bitmap.x+(this.directionX*this.speed),this.bitmap.y+(this.directionY*this.speed));
+		}
+		else
+			this.time_alive++;
 	}
-
-
 }

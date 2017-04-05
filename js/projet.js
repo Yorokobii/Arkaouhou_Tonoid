@@ -7,6 +7,8 @@ var stage;
 var player;
 var npb;
 
+var pjs = [];
+
 //*****************init function**************
 function init(){
 	//canvas
@@ -27,8 +29,15 @@ function init(){
 	player.draw(stage);
 
 	//création de la NPB (modif)
-	npb = new NPB("../ressources/npb2.png");
+	npb = new NPB();
 	npb.draw(stage);
+
+	pjs.push(new PJ(0, 0, 0, 0, 10));
+
+	// for(var i=0; i<pjs.length; ++i)
+	// 	pjs[i].draw(stage);
+
+	pjs[0].draw(stage);
 
 	stage.update();
 	gameLoop();
@@ -39,7 +48,9 @@ function init(){
 //**************gameLoop*********************
 function gameLoop() {
 
-
+	for(var i=0; i<pjs.length; ++i){
+		pjs[i].move();
+	}
 
 	//déplacement -> collision -> correction
 	player.Handling(npb);

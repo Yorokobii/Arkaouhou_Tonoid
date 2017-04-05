@@ -1,7 +1,7 @@
 class NPB extends Object{
 	constructor(){
 		//atributes
-		super("../ressources/pj.png");
+		super("../ressources/npb.png");
 		this.speed = 3;
 		this.maxSpeed = 100;
 		this.directionX = 1;
