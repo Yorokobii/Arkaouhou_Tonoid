@@ -67,8 +67,10 @@ class Player{
 		if(ball.loaded && ball.bitmap.y+ball.bounds.width>=WorldObject.cheight - WorldObject.cheight/9){
 			//collision with ball without spacebar
 			if(this.active_bar<=0){
-				if(ball.bitmap.getTransformedBounds().intersects(this.hitboxPJ.getTransformedBounds()))
+				if(ball.bitmap.getTransformedBounds().intersects(this.hitboxPJ.getTransformedBounds())){
+					ball.speed = 0;
 					return true;
+				}
 				else
 					return false;
 			}

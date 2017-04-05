@@ -1,9 +1,9 @@
 class NPB extends Object{
-	constructor(_img){
+	constructor(){
 		//atributes
-		super(_img);
+		super("../ressources/pj.png");
 		this.speed = 3;
-		this.maxSpeed = 3;
+		this.maxSpeed = 100;
 		this.directionX = 1;
 		this.directionY = (-1);
 
