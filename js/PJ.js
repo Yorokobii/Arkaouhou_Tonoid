@@ -23,7 +23,6 @@ class PJ extends Object{
 	}
 
 	move(){
-		console.log(this.bitmap.x + " " + this.bitmap.y + " : " + this.time_alive + " : " + this.bitmap.visible);
 		if(this.time_alive >= this.create_time){
 			this.bitmap.visible = true;
 			this.bitmap.setTransform(this.bitmap.x+(this.directionX*this.speed),this.bitmap.y+(this.directionY*this.speed));
@@ -36,9 +35,7 @@ class PJ extends Object{
 			if(this.bitmap.y < 0){//up
 				this.directionY = -this.directionY;
 			}
-
 			//////
-
 		}
 		else
 			this.time_alive++;

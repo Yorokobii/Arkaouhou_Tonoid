@@ -8,6 +8,7 @@ class Player{
 		this.direction = 0; //-1 left 0 no movement 1 right
 		this.active_bar = -50; //ball bar activation timer
 		this.space_raised = true;
+		this.speed = 5;
 		this.keys = [];
 		//////////
 
@@ -35,20 +36,21 @@ class Player{
 	}
 
 	keyPressed(){
-
 		if(this.keys[37] && !this.keys[39] && this.hitboxPJ.x > 5)//left key
 			if(!this.keys[16])
-				this.direction = -2;
+				this.direction = -this.speed;
 			else
-				this.direction = -4;
+				this.direction = -this.speed*2;
 
 		if(this.keys[39] && !this.keys[37] && this.hitboxPJ.x < WorldObject.cwidth-this.PJbounds.width-5)//right key
 			if(!this.keys[16])
-				this.direction = 2;
+				this.direction = this.speed;
 			else
-				this.direction = 4;
+				this.direction = this.speed*2;
 
 		if((!this.keys[37] || this.hitboxPJ.x < 5) && (!this.keys[39] || this.hitboxPJ.x > WorldObject.cwidth-this.PJbounds.width-5)) this.direction = 0;
+
+		if(this.keys[39] && this.keys[37]) this.direction = 0;
 
 		if(this.keys[32] && this.active_bar<=-50 && this.space_raised){
 			this.active_bar = 50;

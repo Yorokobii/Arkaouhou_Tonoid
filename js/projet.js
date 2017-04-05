@@ -7,6 +7,8 @@ var stage;
 var player;
 var npb;
 
+var brick = [];
+
 //*****************init function**************
 function init(){
 	//canvas
@@ -32,10 +34,9 @@ function init(){
 
 	WorldObject.pjs = [];
 
-	Pattern.new(1);
-
-	 for(var i=0; i<WorldObject.pjs.length; ++i)
-	 	WorldObject.pjs[i].draw(stage);
+	brick.push(new Brick(1, 200, 200));
+	for(var i=0; i<brick.length; ++i)
+		brick[i].draw(stage);
 
 	stage.update();
 	gameLoop();
@@ -50,10 +51,12 @@ function gameLoop() {
 		WorldObject.pjs[i].move();
 	}
 
+	for(var i=0; i<brick.length; ++i)
+		brick[i].ball_collision(npb, player);
+
 	//déplacement -> collision -> correction
 	player.Handling(npb);
 	npb.move();
-
 
 	//Collision: Collision Balle-Briques, Balle-Player, Proj-hauteurif->, 
 	

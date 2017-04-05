@@ -21,32 +21,34 @@ class Brick extends Object{
 	}
 
 	// takes the ball as argument and returns true if the brick is a level 0, else false
-	ball_collision(ball){
-		var rect = ball.bitmap.getBounds().intersection(this.ball.getBounds());
-		if(rect != null){//intersection
-			//deviate the ball
-			if(rect.width >= rect.height){ //hit from top
-				ball.direction.y = -ball.direction.y;
-			}
-			else{//hit from side
-				ball.direction.x = -ball.direction.x;
-			}			
-			//throw pattern
-			Pattern.new(this.level);
-			this.level--;
-			if(this.level == 0){
-				return true;
+	ball_collision(ball, player){
+		if(ball.loaded && this.level>0){
+			var rect = this.bitmap.getTransformedBounds().intersection(ball.bitmap.getTransformedBounds());
+			if(rect != null){//intersection
+				//deviate the ball
+				if(rect.width >= rect.height){ //hit from top
+					ball.directionY = -ball.directionY;
+				}
+				else{//hit from side
+					ball.directionX = -ball.directionX;
+				}			
+				//throw pattern
+				Pattern.new(this.level, this.bitmap.x, this.bitmap.y, player);
+				this.level--;
+				if(this.level == 0){
+					return true;
+				}
+				else{
+					var _x = this.bitmap.x;
+					var _y = this.bitmap.y;
+
+					this.new_brick(this.level, _x, _y); //loads the bitmap for the corresponding level
+					return false;		
+				}
 			}
 			else{
-				var _x = this.bitmap.x;
-				var _y = this.bitmap.y;
-
-				this.new_brick(this.level, _x, _y); //loads the bitmap for the corresponding level
-				return false;		
+				return false;
 			}
-		}
-		else{
-			return false;
 		}
 	}
 }
