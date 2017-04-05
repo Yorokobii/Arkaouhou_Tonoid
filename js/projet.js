@@ -7,8 +7,6 @@ var stage;
 var player;
 var npb;
 
-var pjs = [];
-
 //*****************init function**************
 function init(){
 	//canvas
@@ -32,12 +30,12 @@ function init(){
 	npb = new NPB();
 	npb.draw(stage);
 
-	pjs.push(new PJ(0, 0, 0, 0, 10));
+	WorldObject.pjs = [];
 
-	// for(var i=0; i<pjs.length; ++i)
-	// 	pjs[i].draw(stage);
+	Pattern.new(1);
 
-	pjs[0].draw(stage);
+	 for(var i=0; i<WorldObject.pjs.length; ++i)
+	 	WorldObject.pjs[i].draw(stage);
 
 	stage.update();
 	gameLoop();
@@ -48,8 +46,8 @@ function init(){
 //**************gameLoop*********************
 function gameLoop() {
 
-	for(var i=0; i<pjs.length; ++i){
-		pjs[i].move();
+	for(var i=0; i<WorldObject.pjs.length; ++i){
+		WorldObject.pjs[i].move();
 	}
 
 	//déplacement -> collision -> correction

@@ -111,7 +111,7 @@ class Player{
 
 	Handling(ball){
 		//ball collision
-		this.ball_collision(ball);
+		var ret = this.ball_collision(ball);
 
 		//move
 		this.keyPressed();
@@ -129,5 +129,7 @@ class Player{
 				this.hitboxB.visible = false;
 			}
 		}
+
+		return ret;
 	}
 }
