@@ -10,6 +10,7 @@ class Player{
 		this.space_raised = true;
 		this.speed = 3;
 		this.keys = [];
+		this.immuned = 0;
 		//////////
 
 		//load the bitmap
@@ -66,12 +67,15 @@ class Player{
 	//function that returns true if the player is hit by the ball, else false, if the ball touches the ballHitbox the ball's
 	//velocity is changed accordingly
 	ball_collision(ball){
+		if(this.immuned > 0) this.immuned--;
 		if(ball.loaded && ball.bitmap.y+ball.bounds.width>=WorldObject.cheight - WorldObject.cheight/9){
 			//collision with ball without spacebar
 			if(this.active_bar<=0){
-				if(ball.bitmap.getTransformedBounds().intersects(this.hitboxPJ.getTransformedBounds())){
-					return true;
-				}
+				if(ball.bitmap.getTransformedBounds().intersects(this.hitboxPJ.getTransformedBounds()))
+					if(this.immuned <= 0)
+						return true;
+					else
+						return false;
 				else
 					return false;
 			}
@@ -111,6 +115,11 @@ class Player{
 	}
 
 	Handling(ball){
+		if(this.immuned%20 == 10)
+			this.hitboxPJ.visible = false;
+		else if(this.immuned%20 == 0)
+			this.hitboxPJ.visible = true;
+
 		//ball collision
 		var ret = this.ball_collision(ball);
 

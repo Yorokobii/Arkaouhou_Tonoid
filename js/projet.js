@@ -9,6 +9,13 @@ var npb;
 
 var brick = [];
 
+function lost(){
+	player.immuned = 100;
+	// stage.removeAllChildren();
+	// stage.update();
+	// iahef.iuaef();
+}
+
 //*****************init function**************
 function init(){
 	//canvas
@@ -49,22 +56,16 @@ function gameLoop() {
 
 	for(var i=0; i<WorldObject.pjs.length; ++i){
 		WorldObject.pjs[i].move();
-		if(WorldObject.pjs[i].collision_player(player)){
-			stage.removeAllChildren();
-			stage.update();
-			iahef.iuaef();
-		}		
+		if(WorldObject.pjs[i].collision_player(player) && player.immuned == 0)
+			lost();
 	}
 
 	for(var i=0; i<brick.length; ++i)
 		brick[i].ball_collision(npb, player, stage);
 
 	//déplacement -> collision -> correction
-	if(player.Handling(npb)){
-		stage.removeAllChildren();
-		stage.update();
-		iahef.iuaef();
-	}
+	if(player.Handling(npb) && player.immuned == 0)
+		lost();
 	npb.move();
 
 	//Collision: Collision Balle-Briques, Balle-Player, Proj-hauteurif->, 
