@@ -42,9 +42,10 @@ class PJ extends Object{
 	}
 
 	collision_player(player){
-		if(this.bitmap.y > WorldObject.height - WorldObject.height/10){
-			if(this.bitmap.getTransformedBounds().intersects(player.hitboxPJ.getTransformedBounds()))
+		if(this.bitmap.y > WorldObject.cheight - WorldObject.cheight/10){
+			if(this.bitmap.getTransformedBounds().intersects(player.hitboxPJ.getTransformedBounds())){
 				return true;
+			}
 			else return false;
 		}
 		else return false;

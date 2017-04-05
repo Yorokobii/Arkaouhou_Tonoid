@@ -34,7 +34,7 @@ function init(){
 
 	WorldObject.pjs = [];
 
-	brick.push(new Brick(1, 200, 200));
+	brick.push(new Brick(2, 200, 200));
 	for(var i=0; i<brick.length; ++i)
 		brick[i].draw(stage);
 
@@ -49,13 +49,22 @@ function gameLoop() {
 
 	for(var i=0; i<WorldObject.pjs.length; ++i){
 		WorldObject.pjs[i].move();
+		if(WorldObject.pjs[i].collision_player(player)){
+			stage.removeAllChildren();
+			stage.update();
+			iahef.iuaef();
+		}		
 	}
 
 	for(var i=0; i<brick.length; ++i)
-		brick[i].ball_collision(npb, player);
+		brick[i].ball_collision(npb, player, stage);
 
 	//déplacement -> collision -> correction
-	player.Handling(npb);
+	if(player.Handling(npb)){
+		stage.removeAllChildren();
+		stage.update();
+		iahef.iuaef();
+	}
 	npb.move();
 
 	//Collision: Collision Balle-Briques, Balle-Player, Proj-hauteurif->, 

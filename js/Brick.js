@@ -8,21 +8,24 @@ class Brick extends Object{
 		this.level = _level;
 	}
 
-	new_brick(_level, _x, _y){
+	new_brick(_level, _x, _y, stage){
 		this.level_img = "../ressources/brick_level_" + this.level + ".jpg";
 
 		this.bitmap = new createjs.Bitmap(this.level_img);
+		this.bitmap.setTransform(_x, _y);
 
 		this.bitmap.image.onload = () => {
 			this.bounds = this.bitmap.getBounds();
+			this.loaded = true;
 			//places the bitmap
-			this.bitmap.setTransform(_x, _y);
 		}
+
+		stage.addChild(this.bitmap);
 	}
 
 	// takes the ball as argument and returns true if the brick is a level 0, else false
-	ball_collision(ball, player){
-		if(ball.loaded && this.level>0){
+	ball_collision(ball, player, stage){
+		if(ball.loaded && this.loaded && this.level>0){
 			var rect = this.bitmap.getTransformedBounds().intersection(ball.bitmap.getTransformedBounds());
 			if(rect != null){//intersection
 				//deviate the ball
@@ -35,6 +38,8 @@ class Brick extends Object{
 				//throw pattern
 				Pattern.new(this.level, this.bitmap.x, this.bitmap.y, player);
 				this.level--;
+				stage.removeChild(this.bitmap);
+				this.loaded = false;
 				if(this.level == 0){
 					return true;
 				}
@@ -42,7 +47,7 @@ class Brick extends Object{
 					var _x = this.bitmap.x;
 					var _y = this.bitmap.y;
 
-					this.new_brick(this.level, _x, _y); //loads the bitmap for the corresponding level
+					this.new_brick(this.level, _x, _y, stage); //loads the bitmap for the corresponding level
 					return false;		
 				}
 			}

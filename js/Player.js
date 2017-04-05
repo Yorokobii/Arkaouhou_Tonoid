@@ -8,7 +8,7 @@ class Player{
 		this.direction = 0; //-1 left 0 no movement 1 right
 		this.active_bar = -50; //ball bar activation timer
 		this.space_raised = true;
-		this.speed = 5;
+		this.speed = 3;
 		this.keys = [];
 		//////////
 
@@ -70,7 +70,6 @@ class Player{
 			//collision with ball without spacebar
 			if(this.active_bar<=0){
 				if(ball.bitmap.getTransformedBounds().intersects(this.hitboxPJ.getTransformedBounds())){
-					ball.speed = 0;
 					return true;
 				}
 				else

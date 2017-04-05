@@ -4,7 +4,7 @@ class NPB extends Object{
 		super("../ressources/npb.png");
 		this.speed = 3;
 		this.maxSpeed = 100;
-		this.directionX = 1;
+		this.directionX = 0;
 		this.directionY = (-1);
 
 		this.bitmap.setTransform(WorldObject.cwidth/2 - 12,  

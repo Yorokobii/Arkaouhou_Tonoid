@@ -8,7 +8,7 @@ class Pattern{
 			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 160, 2, 0));
 
 			for(var i=pjs_count; i<WorldObject.pjs.length; ++i){
-	 			WorldObject.pjs[i].draw(stage);
+				WorldObject.pjs[i].draw(stage);
 			}
 		}
 		else if(_level == 2){
