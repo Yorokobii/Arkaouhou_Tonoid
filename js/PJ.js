@@ -1,11 +1,12 @@
 class PJ extends Object{
-	constructor(Xpos, Ypos, _angle, _speed, _create_time){ //angle from the vector (0,1)
+	constructor(Xpos, Ypos, _angle, _angle_from_player, _speed, _create_time){ //angle from the vector (0,1)
 		//atributes
 		super("../ressources/pj.png");
 		this.speed = _speed;
 
+		this.angle_from_player = _angle_from_player;
 
-		if(_angle != null){
+		if(player_directed != null){
 			/////////direction
 			this.directionX = Math.sin(_angle*(Math.PI/180));
 			this.directionY = -Math.cos(_angle*(Math.PI/180));
@@ -40,6 +41,8 @@ class PJ extends Object{
 				angle = Math.acos(cos)/(Math.PI/180);
 			else
 				angle = -Math.acos(cos)/(Math.PI/180);
+
+			angle += this.angle_from_player;
 
 			/////////direction
 			this.directionX = Math.sin(angle*(Math.PI/180));
