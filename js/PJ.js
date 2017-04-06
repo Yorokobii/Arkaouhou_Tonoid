@@ -1,19 +1,25 @@
-
 class PJ extends Object{
 	constructor(Xpos, Ypos, _angle, _speed, _create_time){ //angle from the vector (0,1)
 		//atributes
 		super("../ressources/pj.png");
 		this.speed = _speed;
 
-		/////////direction
-		this.directionX = Math.sin(_angle*(Math.PI/180));
-		this.directionY = -Math.cos(_angle*(Math.PI/180));
 
-		var magnitude = Math.sqrt(this.directionX*this.directionX + this.directionY*this.directionY);
-		//normalized
-		this.directionX /= magnitude;
-		this.directionY /= magnitude;
-		/////////
+		if(_angle != null){
+			/////////direction
+			this.directionX = Math.sin(_angle*(Math.PI/180));
+			this.directionY = -Math.cos(_angle*(Math.PI/180));
+
+			var magnitude = Math.sqrt(this.directionX*this.directionX + this.directionY*this.directionY);
+			//normalized
+			this.directionX /= magnitude;
+			this.directionY /= magnitude;
+			/////////
+		}
+		else{
+			this.directionX = null;
+			this.directionY = null;
+		}
 
 		this.create_time = _create_time;
 		this.time_alive = 0;
@@ -23,7 +29,28 @@ class PJ extends Object{
 		this.bitmap.setTransform(Xpos, Ypos);
 	}
 
-	move(){
+	move(player){
+		if((this.time_alive == this.create_time) && this.directionX == null){
+			var VX = ((player.hitboxPJ.x + (player.PJbounds.width/2)) - (this.bitmap.x));
+			var VY = -((player.hitboxPJ.y + (player.PJbounds.height/2)) - (this.bitmap.y));
+
+			var cos = VY/Math.sqrt(VX*VX + VY*VY);
+			var angle;
+			if(VX > 0)
+				angle = Math.acos(cos)/(Math.PI/180);
+			else
+				angle = -Math.acos(cos)/(Math.PI/180);
+
+			/////////direction
+			this.directionX = Math.sin(angle*(Math.PI/180));
+			this.directionY = -Math.cos(angle*(Math.PI/180));
+
+			var magnitude = Math.sqrt(this.directionX*this.directionX + this.directionY*this.directionY);
+			//normalized
+			this.directionX /= magnitude;
+			this.directionY /= magnitude;
+			/////////
+		}
 		if(this.time_alive >= this.create_time){
 			this.bitmap.visible = true;
 			this.bitmap.setTransform(this.bitmap.x+(this.directionX*this.speed),this.bitmap.y+(this.directionY*this.speed));

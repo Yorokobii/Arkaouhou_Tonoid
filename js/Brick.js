@@ -36,7 +36,7 @@ class Brick extends Object{
 					ball.directionX = -ball.directionX;
 				}			
 				//throw pattern
-				Pattern.new(this.level, this.bitmap.x, this.bitmap.y, player);
+				Pattern.new(this.level, this.bitmap.x, this.bitmap.y);
 				this.level--;
 				stage.removeChild(this.bitmap);
 				this.loaded = false;

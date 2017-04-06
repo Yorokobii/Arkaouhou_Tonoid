@@ -55,7 +55,7 @@ function init(){
 function gameLoop() {
 
 	for(var i=0; i<WorldObject.pjs.length; ++i){
-		WorldObject.pjs[i].move();
+		WorldObject.pjs[i].move(player);
 		if(WorldObject.pjs[i].collision_player(player) && player.immuned == 0)
 			lost();
 	}

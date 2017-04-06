@@ -1,23 +1,12 @@
 class Pattern{
-	static new(_level, brick_posX, brick_posY, player){
+	static new(_level, brick_posX, brick_posY){
 		if(_level == 1){
-			
-			var VX = ((brick_posX + 32), (player.hitboxPJ.x + (player.PJbounds.width/2)));
-			var VY = ((brick_posY + 32), (player.hitboxPJ.y + (player.PJbounds.height/2)));
-			console.log(VX);
-			console.log(VY);
-			console.log((VX*VX + VY*VY));
-
-			var cos = VY/Math.sqrt(VX*VX + VY*VY);
-			var angle = Math.acos(cos)/(Math.PI/180);
-			console.log(cos);
-			console.log(angle);
 
 			var pjs_count = WorldObject.pjs.length;
 
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, angle, 1, 0));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 0, 1, 25));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 0, 1, 50));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, null, 1, 0));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, null, 1, 25));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, null, 1, 50));
 
 			for(var i=pjs_count; i<WorldObject.pjs.length; ++i){
 				WorldObject.pjs[i].draw(stage);
