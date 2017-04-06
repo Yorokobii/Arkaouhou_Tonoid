@@ -41,10 +41,10 @@ function init(){
 
 	WorldObject.pjs = [];
 
-	brick.push(new Brick(3, 2, 2));
-	brick.push(new Brick(4, 1, 3));
-	brick.push(new Brick(5, 4, 5));
-	brick.push(new Brick(2, 2, 5));
+	brick.push(new Brick(7, 3, 2));
+	// brick.push(new Brick(4, 1, 3));
+	// brick.push(new Brick(5, 4, 5));
+	// brick.push(new Brick(2, 2, 5));
 	for(var i=0; i<brick.length; ++i)
 		brick[i].draw(stage);
 
