@@ -26,18 +26,16 @@ class Pattern{
 		else if(_level == 3){
 			var pjs_count = WorldObject.pjs.length;
 
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 180, 0, 1, 0));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, -160, 0, 1, 0));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 160, 0, 1, 10));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 180, 0, 1, 10));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, -160, 0, 1, 20));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 160, 0, 1, 20));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 180, 0, 1, 30));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, -160, 0, 1, 30));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 160, 0, 1, 40));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 180, 0, 1, 40));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 160, 0, 1, 50));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 180, 0, 1, 50));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, null, 5, 1, 0));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, null, -5, 1, 0));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, null, 5, 1, 30));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, null, -5, 1, 30));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, null, 5, 1, 60));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, null, -5, 1, 60));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, null, 5, 1, 90));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, null, -5, 1, 90));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, null, 5, 1, 120));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, null, -5, 1, 120));
 
 			for(var i=pjs_count; i<WorldObject.pjs.length; ++i){
 	 			WorldObject.pjs[i].draw(stage);
