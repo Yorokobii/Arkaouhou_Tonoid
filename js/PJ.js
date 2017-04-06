@@ -1,3 +1,4 @@
+
 class PJ extends Object{
 	constructor(Xpos, Ypos, _angle, _speed, _create_time){ //angle from the vector (0,1)
 		//atributes
