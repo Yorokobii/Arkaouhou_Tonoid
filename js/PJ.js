@@ -6,7 +6,7 @@ class PJ extends Object{
 
 		this.angle_from_player = _angle_from_player;
 
-		if(player_directed != null){
+		if(_angle != null){
 			/////////direction
 			this.directionX = Math.sin(_angle*(Math.PI/180));
 			this.directionY = -Math.cos(_angle*(Math.PI/180));
