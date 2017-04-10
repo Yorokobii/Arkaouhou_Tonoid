@@ -18,11 +18,15 @@ class Player{
 		this.hitboxB = new createjs.Bitmap("../ressources/bar.png");
 
 		this.hitboxPJ.image.onload = () => {
+			// this.hitboxPJ.scaleX = (WorldObject.cwidth/20);
+			// this.hitboxPJ.scaleY = (WorldObject.cheight/949);
 			this.PJbounds = this.hitboxPJ.getBounds();
 			this.hitboxPJ.setTransform(WorldObject.cwidth/2-this.PJbounds.width/2, WorldObject.cheight - this.PJbounds.height);
 		}
 
 		this.hitboxB.image.onload = () => {
+			// this.hitboxPJ.scaleX = (WorldObject.cwidth/949);
+			// this.hitboxPJ.scaleY = (WorldObject.cheight/949);
 			this.Bbounds = this.hitboxB.getBounds();
 			//places the bitmap
 			this.hitboxB.setTransform(WorldObject.cwidth/2-this.Bbounds.width/2, WorldObject.cheight - this.Bbounds.height);

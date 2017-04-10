@@ -1,9 +1,9 @@
 class Brick extends Object{
 	constructor(_level, _x, _y){
 		//atributes
-		super("../ressources/brick_level_" + _level + ".jpg");
+		super("../ressources/brick_level_" + _level + ".jpg", 64/(WorldObject.cwidth/10), 16/(WorldObject.cheight/40));
 
-		this.bitmap.setTransform(_x*64, _y*16);
+		this.bitmap.setTransform(_x*(WorldObject.cwidth/10), _y*(WorldObject.cheight/40));
 
 		this.level = _level;
 	}
@@ -15,7 +15,9 @@ class Brick extends Object{
 		this.bitmap.setTransform(_x, _y);
 
 		this.bitmap.image.onload = () => {
-			this.bounds = this.bitmap.getBounds();
+	    	// this.bitmap.scaleX = (64/(WorldObject.cwidth/10));
+	    	// this.bitmap.scaleY = (16/(WorldObject.cheight/40));
+			this.bounds = this.bitmap.getTransformedBounds();
 			this.loaded = true;
 			//places the bitmap
 		}
@@ -31,9 +33,17 @@ class Brick extends Object{
 				//deviate the ball
 				if(rect.width >= rect.height){ //hit from top
 					ball.directionY = -ball.directionY;
+					if(rect.y <= ball.bitmap.y)
+						ball.bitmap.y += rect.height;
+					else
+						ball.bitmap.y -= rect.height;
 				}
 				else{//hit from side
 					ball.directionX = -ball.directionX;
+					if(rect.x <= ball.bitmap.x)
+						ball.bitmap.x += rect.width;
+					else
+						ball.bitmap.x -= rect.width;
 				}			
 				//throw pattern
 				Pattern.new(this.level, this.bitmap.x, this.bitmap.y);

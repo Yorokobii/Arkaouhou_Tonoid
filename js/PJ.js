@@ -1,7 +1,7 @@
 class PJ extends Object{
 	constructor(Xpos, Ypos, _angle, _angle_from_player, _speed, _create_time){ //angle from the vector (0,1)
 		//atributes
-		super("../ressources/pj.png");
+		super("../ressources/pj.png", 640, 953);
 		this.speed = _speed;
 
 		this.angle_from_player = _angle_from_player;
@@ -31,45 +31,47 @@ class PJ extends Object{
 	}
 
 	move(player){
-		if((this.time_alive == this.create_time) && this.directionX == null){
-			var VX = ((player.hitboxPJ.x + (player.PJbounds.width/2)) - (this.bitmap.x));
-			var VY = -((player.hitboxPJ.y + (player.PJbounds.height/2)) - (this.bitmap.y));
+		if(this.loaded){
+			if((this.time_alive == this.create_time) && this.directionX == null){
+				var VX = ((player.hitboxPJ.x + (player.PJbounds.width/2)) - (this.bitmap.x));
+				var VY = -((player.hitboxPJ.y + (player.PJbounds.height/2)) - (this.bitmap.y));
 
-			var cos = VY/Math.sqrt(VX*VX + VY*VY);
-			var angle;
-			if(VX > 0)
-				angle = Math.acos(cos)/(Math.PI/180);
+				var cos = VY/Math.sqrt(VX*VX + VY*VY);
+				var angle;
+				if(VX > 0)
+					angle = Math.acos(cos)/(Math.PI/180);
+				else
+					angle = -Math.acos(cos)/(Math.PI/180);
+
+				angle += this.angle_from_player;
+
+				/////////direction
+				this.directionX = Math.sin(angle*(Math.PI/180));
+				this.directionY = -Math.cos(angle*(Math.PI/180));
+
+				var magnitude = Math.sqrt(this.directionX*this.directionX + this.directionY*this.directionY);
+				//normalized
+				this.directionX /= magnitude;
+				this.directionY /= magnitude;
+				/////////
+			}
+			if(this.time_alive >= this.create_time){
+				this.bitmap.visible = true;
+				this.bitmap.setTransform(this.bitmap.x+(this.directionX*this.speed),this.bitmap.y+(this.directionY*this.speed));
+
+				//collisions
+
+				if(this.bitmap.x < 0 || this.bitmap.x > WorldObject.cwidth - this.bounds.width){//left || right
+					this.directionX = -this.directionX;
+				}
+				if(this.bitmap.y < 0){//up
+					this.directionY = -this.directionY;
+				}
+				//////
+			}
 			else
-				angle = -Math.acos(cos)/(Math.PI/180);
-
-			angle += this.angle_from_player;
-
-			/////////direction
-			this.directionX = Math.sin(angle*(Math.PI/180));
-			this.directionY = -Math.cos(angle*(Math.PI/180));
-
-			var magnitude = Math.sqrt(this.directionX*this.directionX + this.directionY*this.directionY);
-			//normalized
-			this.directionX /= magnitude;
-			this.directionY /= magnitude;
-			/////////
+				this.time_alive++;
 		}
-		if(this.time_alive >= this.create_time){
-			this.bitmap.visible = true;
-			this.bitmap.setTransform(this.bitmap.x+(this.directionX*this.speed),this.bitmap.y+(this.directionY*this.speed));
-
-			//collisions
-
-			if(this.bitmap.x < 0 || this.bitmap.x > WorldObject.cwidth - 16){//left || right
-				this.directionX = -this.directionX;
-			}
-			if(this.bitmap.y < 0){//up
-				this.directionY = -this.directionY;
-			}
-			//////
-		}
-		else
-			this.time_alive++;
 	}
 
 	collision_player(player){

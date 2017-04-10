@@ -1,19 +1,19 @@
 class NPB extends Object{
 	constructor(){
 		//atributes
-		super("../ressources/npb.png");
+		super("../ressources/npb.png", (24/(WorldObject.cwidth/27)), (24/(WorldObject.cwidth/27)));
 		this.speed = 3;
 		this.maxSpeed = 100;
 		this.directionX = 0;
 		this.directionY = (-1);
 
-		this.bitmap.setTransform(WorldObject.cwidth/2 - 12,  
-				                (WorldObject.cheight - (WorldObject.cheight/10)) - 24);
+		this.bitmap.setTransform(WorldObject.cwidth/2 - WorldObject.cwidth/27/2,
+				                (WorldObject.cheight - (WorldObject.cheight/949)) - WorldObject.cheight/27, this.bitmap.scaleX, this.bitmap.scaleY);
 	}
 
 	initialPlace(){
-		this.bitmap.setTransform(WorldObject.cwidth/2 - 12,  
-				                (WorldObject.cheight - (WorldObject.cheight/10)) - 24);
+		this.bitmap.setTransform(WorldObject.cwidth/2 - WorldObject.cwidth/27/2,
+				                (WorldObject.cheight - (WorldObject.cheight/949)) - WorldObject.cheight/27, this.bitmap.scaleX, this.bitmap.scaleY);
 	}
 
 	wallCollision(){
@@ -42,8 +42,8 @@ class NPB extends Object{
 
 	move(){
 		this.wallCollision();
-		this.bitmap.setTransform(this.bitmap.x+(this.directionX*this.speed),this.bitmap.y+(this.directionY*this.speed));
+		this.bitmap.setTransform(this.bitmap.x+(this.directionX*this.speed),this.bitmap.y+(this.directionY*this.speed), this.bitmap.scaleX, this.bitmap.scaleY);
 	}
 
 
-}
+}0
