@@ -1,9 +1,9 @@
 class Brick extends Object{
 	constructor(_level, _x, _y){
 		//atributes
-		super("../ressources/brick_level_" + _level + ".jpg", 64/(WorldObject.cwidth/10), 16/(WorldObject.cheight/40));
+		super("../ressources/brick_level_" + _level + ".jpg");
 
-		this.bitmap.setTransform(_x*(WorldObject.cwidth/10), _y*(WorldObject.cheight/40));
+		this.bitmap.setTransform((_x*64)+15, _y*16);
 
 		this.level = _level;
 	}
@@ -15,8 +15,6 @@ class Brick extends Object{
 		this.bitmap.setTransform(_x, _y);
 
 		this.bitmap.image.onload = () => {
-	    	// this.bitmap.scaleX = (64/(WorldObject.cwidth/10));
-	    	// this.bitmap.scaleY = (16/(WorldObject.cheight/40));
 			this.bounds = this.bitmap.getTransformedBounds();
 			this.loaded = true;
 			//places the bitmap

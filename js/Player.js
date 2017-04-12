@@ -13,20 +13,22 @@ class Player{
 		this.immuned = 0;
 		//////////
 
+		//invinsibility power
+		this.invinsible_meter = new createjs.Shape();
+		this.invinsible_meter.graphics.beginFill("#000000").drawRect(10, 10, 100, 20);
+		this.invinsible = new createjs.Shape();
+		this.invinsible.graphics.beginFill("#ff0000").drawRect(10, 10, 10, 20);
+
 		//load the bitmap
 		this.hitboxPJ = new createjs.Bitmap("../ressources/core.png");
 		this.hitboxB = new createjs.Bitmap("../ressources/bar.png");
 
 		this.hitboxPJ.image.onload = () => {
-			// this.hitboxPJ.scaleX = (WorldObject.cwidth/20);
-			// this.hitboxPJ.scaleY = (WorldObject.cheight/949);
 			this.PJbounds = this.hitboxPJ.getBounds();
 			this.hitboxPJ.setTransform(WorldObject.cwidth/2-this.PJbounds.width/2, WorldObject.cheight - this.PJbounds.height);
 		}
 
 		this.hitboxB.image.onload = () => {
-			// this.hitboxPJ.scaleX = (WorldObject.cwidth/949);
-			// this.hitboxPJ.scaleY = (WorldObject.cheight/949);
 			this.Bbounds = this.hitboxB.getBounds();
 			//places the bitmap
 			this.hitboxB.setTransform(WorldObject.cwidth/2-this.Bbounds.width/2, WorldObject.cheight - this.Bbounds.height);
@@ -116,6 +118,8 @@ class Player{
 	draw(_stage){
 		_stage.addChild(this.hitboxB);
 		_stage.addChild(this.hitboxPJ);
+		_stage.addChild(this.invinsible_meter);
+		_stage.addChild(this.invinsible);
 	}
 
 	Handling(ball){

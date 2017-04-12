@@ -1,5 +1,5 @@
 class Object{
-	constructor(_img, scaleX, scaleY){
+	constructor(_img){
 		//atributes
 		this.bitmap;
 		this.bounds;
@@ -11,8 +11,6 @@ class Object{
 	    this.bitmap = new createjs.Bitmap(_img);
 
 	    this.bitmap.image.onload = () => {
-	    	// this.bitmap.scaleX = scaleX;
-	    	// this.bitmap.scaleY = scaleY;
 	    	this.bounds = this.bitmap.getTransformedBounds();
 	    	this.loaded = true;
 	    }

@@ -1,7 +1,7 @@
 class PJ extends Object{
 	constructor(Xpos, Ypos, _angle, _angle_from_player, _speed, _create_time){ //angle from the vector (0,1)
 		//atributes
-		super("../ressources/pj.png", 640, 953);
+		super("../ressources/pj.png");
 		this.speed = _speed;
 
 		this.angle_from_player = _angle_from_player;
@@ -27,7 +27,7 @@ class PJ extends Object{
 
 		this.bitmap.visible = false;
 
-		this.bitmap.setTransform(Xpos, Ypos);
+		this.bitmap.setTransform(Xpos, Ypos, WorldObject.scaleX, WorldObject.scaleY);
 	}
 
 	move(player){
@@ -57,7 +57,7 @@ class PJ extends Object{
 			}
 			if(this.time_alive >= this.create_time){
 				this.bitmap.visible = true;
-				this.bitmap.setTransform(this.bitmap.x+(this.directionX*this.speed),this.bitmap.y+(this.directionY*this.speed));
+				this.bitmap.setTransform(this.bitmap.x+(this.directionX*this.speed),this.bitmap.y+(this.directionY*this.speed), WorldObject.scaleX, WorldObject.scaleY);
 
 				//collisions
 

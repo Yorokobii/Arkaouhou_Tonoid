@@ -1,19 +1,19 @@
 class NPB extends Object{
 	constructor(){
 		//atributes
-		super("../ressources/npb.png", (24/(WorldObject.cwidth/27)), (24/(WorldObject.cwidth/27)));
+		super("../ressources/npb.png");
 		this.speed = 3;
 		this.maxSpeed = 100;
 		this.directionX = 0;
 		this.directionY = (-1);
 
-		this.bitmap.setTransform(WorldObject.cwidth/2 - WorldObject.cwidth/27/2,
-				                (WorldObject.cheight - (WorldObject.cheight/949)) - WorldObject.cheight/27, this.bitmap.scaleX, this.bitmap.scaleY);
+		this.bitmap.setTransform(WorldObject.cwidth/2 - 24/2,
+								(WorldObject.cheight - 24));
 	}
 
 	initialPlace(){
-		this.bitmap.setTransform(WorldObject.cwidth/2 - WorldObject.cwidth/27/2,
-				                (WorldObject.cheight - (WorldObject.cheight/949)) - WorldObject.cheight/27, this.bitmap.scaleX, this.bitmap.scaleY);
+		this.bitmap.setTransform(WorldObject.cwidth/2 - 24/2,
+								(WorldObject.cheight - 24));
 	}
 
 	wallCollision(){
