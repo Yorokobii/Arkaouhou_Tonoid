@@ -11,13 +11,14 @@ class Player{
 		this.speed = 3;
 		this.keys = [];
 		this.immuned = 0;
+		this.invinsible_meter = 0;
+		this.invinsible_meter_max = 100;
 		//////////
 
 		//invinsibility power
-		this.invinsible_meter = new createjs.Shape();
-		this.invinsible_meter.graphics.beginFill("#000000").drawRect(10, 10, 100, 20);
 		this.invinsible = new createjs.Shape();
-		this.invinsible.graphics.beginFill("#ff0000").drawRect(10, 10, 10, 20);
+		this.invinsible.graphics.beginFill("#000000").drawRect(10, 10, this.invinsible_meter_max, 20);
+		this.invinsible.graphics.beginFill("#ff0000").drawRect(10, 10, this.invinsible_meter, 20);
 
 		//load the bitmap
 		this.hitboxPJ = new createjs.Bitmap("../ressources/core.png");
@@ -118,7 +119,6 @@ class Player{
 	draw(_stage){
 		_stage.addChild(this.hitboxB);
 		_stage.addChild(this.hitboxPJ);
-		_stage.addChild(this.invinsible_meter);
 		_stage.addChild(this.invinsible);
 	}
 
@@ -131,6 +131,16 @@ class Player{
 		//ball collision
 		var ret = this.ball_collision(ball);
 
+		//charge power
+		if(this.invinsible_meter < 100){
+			this.invinsible_meter += 0.1;
+		}
+		if(this.invinsible_meter%2 == 0){
+			this.invinsible.graphics.clear();
+			this.invinsible.graphics.beginFill("#000000").drawRect(10, 10, this.invinsible_meter_max, 20);
+			this.invinsible.graphics.beginFill("#ff0000").drawRect(10, 10, this.invinsible_meter, 20);
+		}
+		
 		//move
 		this.keyPressed();
 		this.hitboxB.x += this.direction;
