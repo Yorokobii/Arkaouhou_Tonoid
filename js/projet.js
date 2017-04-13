@@ -41,6 +41,7 @@ function init(){
 	npb.draw(stage);
 
 	WorldObject.pjs = [];
+	WorldObject.bonus = [];
 
 	brick.push(new Brick(6, 0, 4));
 	brick.push(new Brick(6, 1, 4));
@@ -82,6 +83,9 @@ function gameLoop() {
 	for(var i=0; i<brick.length; ++i)
 		brick[i].ball_collision(npb, player, stage);
 	
+	for(var i=0; i<WorldObject.bonus.length; ++i){
+		WorldObject.bonus[i].move(player, stage);
+	}
 
 	//Correction: Briques.lvl -1/remove, Player.life -1/Game OVer, clean proj outside map, Balle direction and position
 	

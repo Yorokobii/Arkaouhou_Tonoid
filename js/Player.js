@@ -12,13 +12,13 @@ class Player{
 		this.keys = [];
 		this.immuned = 0;
 		this.invinsible_meter = 0;
-		this.invinsible_meter_max = 100;
+		this.invinsible_meter_max = 1000;
 		//////////
 
 		//invinsibility power
 		this.invinsible = new createjs.Shape();
-		this.invinsible.graphics.beginFill("#000000").drawRect(10, 10, this.invinsible_meter_max, 20);
-		this.invinsible.graphics.beginFill("#ff0000").drawRect(10, 10, this.invinsible_meter, 20);
+		this.invinsible.graphics.beginFill("#000000").drawRect(10, 10, this.invinsible_meter_max/10, 20);
+		this.invinsible.graphics.beginFill("#ff0000").drawRect(10, 10, this.invinsible_meter/10, 20);
 
 		//load the bitmap
 		this.hitboxPJ = new createjs.Bitmap("../ressources/core.png");
@@ -35,7 +35,7 @@ class Player{
 			this.hitboxB.setTransform(WorldObject.cwidth/2-this.Bbounds.width/2, WorldObject.cheight - this.Bbounds.height);
 		}
 
-		document.onkeydown = (e) =>  {this.keys[e.keyCode] = true;};
+		document.onkeydown = (e) =>  {this.keys[e.keyCode] = true; console.log(e.keyCode);};
 		document.onkeyup = (e) => {
 			this.keys[e.keyCode] = false;
 			//to detect that the space bar was raised
@@ -64,6 +64,11 @@ class Player{
 			this.active_bar = 50;
 			this.space_raised = false;
 		}
+
+		if(this.keys[68]) //D
+			if(this.invinsible_meter >= this.invinsible_meter_max){
+				this.invinsible_meter = 0;
+			}
 	}
 
 	initialPlace(){
@@ -116,6 +121,10 @@ class Player{
 		}
 	}
 
+	release_invinsibility(){
+
+	}
+
 	draw(_stage){
 		_stage.addChild(this.hitboxB);
 		_stage.addChild(this.hitboxPJ);
@@ -132,14 +141,19 @@ class Player{
 		var ret = this.ball_collision(ball);
 
 		//charge power
-		if(this.invinsible_meter < 100){
-			this.invinsible_meter += 0.1;
+		if(this.invinsible_meter < this.invinsible_meter_max){
+			this.invinsible_meter += 1;
 		}
-		if(this.invinsible_meter%2 == 0){
-			this.invinsible.graphics.clear();
-			this.invinsible.graphics.beginFill("#000000").drawRect(10, 10, this.invinsible_meter_max, 20);
-			this.invinsible.graphics.beginFill("#ff0000").drawRect(10, 10, this.invinsible_meter, 20);
-		}
+		if(this.invinsible_meter%10 == 0)
+			if(this.invinsible_meter < this.invinsible_meter_max){
+				this.invinsible.graphics.clear();
+				this.invinsible.graphics.beginFill("#000000").drawRect(10, 10, this.invinsible_meter_max/10, 20);
+				this.invinsible.graphics.beginFill("#ff0000").drawRect(10, 10, this.invinsible_meter/10, 20);
+			}
+			else{
+				this.invinsible.graphics.clear();
+				this.invinsible.graphics.beginFill("#00ff00").drawRect(10, 10, this.invinsible_meter_max/10, 20);
+			}
 		
 		//move
 		this.keyPressed();

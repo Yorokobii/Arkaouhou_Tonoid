@@ -8,12 +8,12 @@ class NPB extends Object{
 		this.directionY = (-1);
 
 		this.bitmap.setTransform(WorldObject.cwidth/2 - 24/2,
-								(WorldObject.cheight - 24));
+								(WorldObject.cheight - 36));
 	}
 
 	initialPlace(){
 		this.bitmap.setTransform(WorldObject.cwidth/2 - 24/2,
-								(WorldObject.cheight - 24));
+								(WorldObject.cheight - 36));
 	}
 
 	wallCollision(){
