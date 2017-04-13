@@ -11,14 +11,19 @@ class Player{
 		this.speed = 3;
 		this.keys = [];
 		this.immuned = 0;
-		this.invinsible_meter = 0;
-		this.invinsible_meter_max = 1000;
+		this.shock_wave_meter = 0;
+		this.shock_wave_meter_max = 3;
+		this.shock_wave = -1;
+		this.shock_waveX;
+		this.shock_waveY;
+		this.shock_wave_max = 1000;
+		this.shock_wave_shape = new createjs.Shape();
 		//////////
 
 		//invinsibility power
 		this.invinsible = new createjs.Shape();
-		this.invinsible.graphics.beginFill("#000000").drawRect(10, 10, this.invinsible_meter_max/10, 20);
-		this.invinsible.graphics.beginFill("#ff0000").drawRect(10, 10, this.invinsible_meter/10, 20);
+		this.invinsible.graphics.beginFill("#000000").drawRect(10, 10, this.shock_wave_meter_max*33, 20);
+		this.invinsible.graphics.beginFill("#ff0000").drawRect(10, 10, this.shock_wave_meter*33, 20);
 
 		//load the bitmap
 		this.hitboxPJ = new createjs.Bitmap("../ressources/core.png");
@@ -35,7 +40,7 @@ class Player{
 			this.hitboxB.setTransform(WorldObject.cwidth/2-this.Bbounds.width/2, WorldObject.cheight - this.Bbounds.height);
 		}
 
-		document.onkeydown = (e) =>  {this.keys[e.keyCode] = true; console.log(e.keyCode);};
+		document.onkeydown = (e) =>  {this.keys[e.keyCode] = true;};
 		document.onkeyup = (e) => {
 			this.keys[e.keyCode] = false;
 			//to detect that the space bar was raised
@@ -66,8 +71,9 @@ class Player{
 		}
 
 		if(this.keys[68]) //D
-			if(this.invinsible_meter >= this.invinsible_meter_max){
-				this.invinsible_meter = 0;
+			if(this.shock_wave_meter > 0 && this.shock_wave == -1){
+				this.shock_wave_meter--;
+				this.shockwave();
 			}
 	}
 
@@ -121,17 +127,20 @@ class Player{
 		}
 	}
 
-	release_invinsibility(){
-
+	shockwave(){
+		this.shock_wave = 0;
+		this.shock_waveX = this.hitboxPJ.x+6;
+		this.shock_waveY = this.hitboxPJ.y+6;
 	}
 
 	draw(_stage){
+		_stage.addChild(this.shock_wave_shape);
 		_stage.addChild(this.hitboxB);
 		_stage.addChild(this.hitboxPJ);
 		_stage.addChild(this.invinsible);
 	}
 
-	Handling(ball){
+	Handling(ball, stage){
 		if(this.immuned%20 == 10)
 			this.hitboxPJ.visible = false;
 		else if(this.immuned%20 == 0)
@@ -141,24 +150,41 @@ class Player{
 		var ret = this.ball_collision(ball);
 
 		//charge power
-		if(this.invinsible_meter < this.invinsible_meter_max){
-			this.invinsible_meter += 1;
+		if(this.shock_wave_meter < this.shock_wave_meter_max){
+			this.invinsible.graphics.clear();
+			this.invinsible.graphics.beginFill("#000000").drawRect(10, 10, this.shock_wave_meter_max*33, 20);
+			this.invinsible.graphics.beginFill("#ff0000").drawRect(10, 10, this.shock_wave_meter*33, 20);
 		}
-		if(this.invinsible_meter%10 == 0)
-			if(this.invinsible_meter < this.invinsible_meter_max){
-				this.invinsible.graphics.clear();
-				this.invinsible.graphics.beginFill("#000000").drawRect(10, 10, this.invinsible_meter_max/10, 20);
-				this.invinsible.graphics.beginFill("#ff0000").drawRect(10, 10, this.invinsible_meter/10, 20);
-			}
-			else{
-				this.invinsible.graphics.clear();
-				this.invinsible.graphics.beginFill("#00ff00").drawRect(10, 10, this.invinsible_meter_max/10, 20);
-			}
+		else{
+			this.invinsible.graphics.clear();
+			this.invinsible.graphics.beginFill("#00ff00").drawRect(10, 10, this.shock_wave_meter_max*33, 20);
+		}
 		
 		//move
 		this.keyPressed();
 		this.hitboxB.x += this.direction;
 		this.hitboxPJ.x += this.direction;
+
+		//shockwave activation
+		if(this.shock_wave > -1){
+			this.shock_wave_shape.graphics.clear();
+			if(this.shock_wave >= this.shock_wave_max){
+				this.shock_wave = -1;
+			}
+			else{
+				this.shock_wave+=5;
+				this.shock_wave_shape.graphics.beginFill("#000000").drawCircle(this.shock_waveX, this.shock_waveY, this.shock_wave);
+				if(this.shock_wave_meter != 2)
+					this.shock_wave_shape.graphics.beginFill("#eee").drawCircle(this.shock_waveX, this.shock_waveY, (this.shock_wave)-2<0 ? 0 : (this.shock_wave)-2);
+				for(var i=0; i<WorldObject.pjs.length; ++i){
+					var res = Math.sqrt( Math.pow( this.shock_waveX - WorldObject.pjs[i].bitmap.x , 2) + Math.pow( this.shock_waveY - WorldObject.pjs[i].bitmap.y , 2));
+					if(res <= this.shock_wave && res >= this.shock_wave-20){
+						stage.removeChild(WorldObject.pjs[i].bitmap);
+						WorldObject.pjs.splice(WorldObject.pjs.indexOf(WorldObject.pjs[i]), 1);
+					}
+				}
+			}
+		}
 
 		//display ball bar
 		if(this.active_bar > 0){

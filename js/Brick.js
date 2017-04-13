@@ -47,7 +47,7 @@ class Brick extends Object{
 				Pattern.new(this.level, this.bitmap.x, this.bitmap.y);
 				this.level--;
 				stage.removeChild(this.bitmap);
-				Bonus.new_bonus(this.bitmap.x+20, this.bitmap.y);
+				Bonus.new_bonus(this.bitmap.x+20, this.bitmap.y, stage);
 				this.loaded = false;
 				if(this.level == 0){
 					return true;

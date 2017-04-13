@@ -74,7 +74,7 @@ function gameLoop() {
 	}
 
 	//déplacement -> collision -> correction
-	if(player.Handling(npb) && player.immuned == 0)
+	if(player.Handling(npb, stage) && player.immuned == 0)
 		lost();
 	npb.move();
 
