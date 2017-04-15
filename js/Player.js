@@ -13,6 +13,7 @@ class Player{
 		this.immuned = 0;
 		this.shock_wave_meter = 0;
 		this.shock_wave_meter_max = 3;
+		this.shock_wave_meter_shot = 0;
 		this.shock_wave = -1;
 		this.shock_waveX;
 		this.shock_waveY;
@@ -131,6 +132,8 @@ class Player{
 		this.shock_wave = 0;
 		this.shock_waveX = this.hitboxPJ.x+6;
 		this.shock_waveY = this.hitboxPJ.y+6;
+		this.shock_wave_meter_shot = this.shock_wave_meter;
+		this.shock_wave_max = 1000/(3-this.shock_wave_meter_shot);
 	}
 
 	draw(_stage){
@@ -174,11 +177,11 @@ class Player{
 			else{
 				this.shock_wave+=5;
 				this.shock_wave_shape.graphics.beginFill("#000000").drawCircle(this.shock_waveX, this.shock_waveY, this.shock_wave);
-				if(this.shock_wave_meter != 2)
+				if(this.shock_wave_meter_shot != 2)
 					this.shock_wave_shape.graphics.beginFill("#eee").drawCircle(this.shock_waveX, this.shock_waveY, (this.shock_wave)-2<0 ? 0 : (this.shock_wave)-2);
 				for(var i=0; i<WorldObject.pjs.length; ++i){
 					var res = Math.sqrt( Math.pow( this.shock_waveX - WorldObject.pjs[i].bitmap.x , 2) + Math.pow( this.shock_waveY - WorldObject.pjs[i].bitmap.y , 2));
-					if(res <= this.shock_wave && res >= this.shock_wave-20){
+					if(res <= this.shock_wave && (res >= this.shock_wave-20 || this.shock_wave_meter_shot == 2)){
 						stage.removeChild(WorldObject.pjs[i].bitmap);
 						WorldObject.pjs.splice(WorldObject.pjs.indexOf(WorldObject.pjs[i]), 1);
 					}

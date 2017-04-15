@@ -1,7 +1,7 @@
 class Bonus extends Object{
 	constructor(posX, posY, _rand){
 		//atributes
-		super("../ressources/test_bonus.png");
+		super("../ressources/bonus.png");
 
 		this.bitmap.setTransform(posX, posY);
 
@@ -10,7 +10,7 @@ class Bonus extends Object{
 	}
 
 	static new_bonus(posX, posY, stage){
-		var rand = 100;//Math.random()*100;
+		var rand = Math.random()*100;
 		if(rand >= 95){
 			var size = WorldObject.bonus.length;
 			WorldObject.bonus.push(new Bonus(posX, posY, rand));

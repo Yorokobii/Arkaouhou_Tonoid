@@ -81,7 +81,7 @@ function gameLoop() {
 	//Collision: Collision Balle-Briques, Balle-Player, Proj-hauteurif->, 
 
 	for(var i=0; i<brick.length; ++i)
-		brick[i].ball_collision(npb, player, stage);
+		brick[i].ball_collision(npb, stage);
 	
 	for(var i=0; i<WorldObject.bonus.length; ++i){
 		WorldObject.bonus[i].move(player, stage);

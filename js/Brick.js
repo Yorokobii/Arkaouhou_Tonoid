@@ -24,7 +24,7 @@ class Brick extends Object{
 	}
 
 	// takes the ball as argument and returns true if the brick is a level 0, else false
-	ball_collision(ball, player, stage){
+	ball_collision(ball, stage){
 		if(ball.loaded && this.loaded && this.level>0){
 			var rect = this.bitmap.getTransformedBounds().intersection(ball.bitmap.getTransformedBounds());
 			if(rect != null){//intersection
@@ -32,16 +32,16 @@ class Brick extends Object{
 				if(rect.width >= rect.height){ //hit from top
 					ball.directionY = -ball.directionY;
 					if(rect.y <= ball.bitmap.y)
-						ball.bitmap.y += rect.height;
+						ball.bitmap.y += (rect.height+1);
 					else
-						ball.bitmap.y -= rect.height;
+						ball.bitmap.y -= (rect.height+1);
 				}
 				else{//hit from side
 					ball.directionX = -ball.directionX;
 					if(rect.x <= ball.bitmap.x)
-						ball.bitmap.x += rect.width;
+						ball.bitmap.x += (rect.width+1);
 					else
-						ball.bitmap.x -= rect.width;
+						ball.bitmap.x -= (rect.width+1);
 				}			
 				//throw pattern
 				Pattern.new(this.level, this.bitmap.x, this.bitmap.y);
