@@ -90,18 +90,10 @@ function gameLoop() {
 
 	//Collision: Collision Balle-Briques, Balle-Player, Proj-hauteurif->, 
 
-<<<<<<< HEAD
 	for(var i=0; i<levels.availableBricks.length; ++i)
-		if (levels.availableBricks[i].ball_collision(npb, player, stage)==true) {
+		if (levels.availableBricks[i].ball_collision(npb, player, stage)==true) 
 			levels.availableBricks.splice(i,1);
-			console.log(levels.availableBricks.length);
-		}
 
-=======
-	for(var i=0; i<brick.length; ++i)
-		brick[i].ball_collision(npb, stage);
->>>>>>> 9436c875c7f841da95064bc1ff43e807f6a3584e
-	
 	for(var i=0; i<WorldObject.bonus.length; ++i){
 		WorldObject.bonus[i].move(player, stage);
 	}
