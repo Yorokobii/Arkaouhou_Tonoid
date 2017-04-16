@@ -43,10 +43,16 @@ function init(){
 	npb.draw(stage);
 
 	WorldObject.pjs = [];
+<<<<<<< HEAD
 	cpt_lvl= 1;
 	levels= Level.loadLevels(cwidth, cheight, cpt_lvl);
 	//levels[cpt_lvl];
 	/*brick.push(new Brick(6, 0, 4));
+=======
+	WorldObject.bonus = [];
+
+	brick.push(new Brick(6, 0, 4));
+>>>>>>> 9436c875c7f841da95064bc1ff43e807f6a3584e
 	brick.push(new Brick(6, 1, 4));
 	brick.push(new Brick(6, 2, 4));
 	brick.push(new Brick(6, 3, 4));
@@ -78,19 +84,27 @@ function gameLoop() {
 	}
 
 	//déplacement -> collision -> correction
-	if(player.Handling(npb) && player.immuned == 0)
+	if(player.Handling(npb, stage) && player.immuned == 0)
 		lost();
 	npb.move();
 
 	//Collision: Collision Balle-Briques, Balle-Player, Proj-hauteurif->, 
 
+<<<<<<< HEAD
 	for(var i=0; i<levels.availableBricks.length; ++i)
 		if (levels.availableBricks[i].ball_collision(npb, player, stage)==true) {
 			levels.availableBricks.splice(i,1);
 			console.log(levels.availableBricks.length);
 		}
 
+=======
+	for(var i=0; i<brick.length; ++i)
+		brick[i].ball_collision(npb, stage);
+>>>>>>> 9436c875c7f841da95064bc1ff43e807f6a3584e
 	
+	for(var i=0; i<WorldObject.bonus.length; ++i){
+		WorldObject.bonus[i].move(player, stage);
+	}
 
 	//Correction: Briques.lvl -1/remove, Player.life -1/Game OVer, clean proj outside map, Balle direction and position
 	

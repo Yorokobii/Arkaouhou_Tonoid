@@ -4,16 +4,17 @@ class NPB extends Object{
 		super("../ressources/npb.png");
 		this.speed = 3;
 		this.maxSpeed = 100;
+		this.minSpeed = 2;
 		this.directionX = 0;
 		this.directionY = (-1);
 
 		this.bitmap.setTransform(WorldObject.cwidth/2 - 24/2,
-								(WorldObject.cheight - 24));
+								(WorldObject.cheight - 36));
 	}
 
 	initialPlace(){
 		this.bitmap.setTransform(WorldObject.cwidth/2 - 24/2,
-								(WorldObject.cheight - 24));
+								(WorldObject.cheight - 36));
 	}
 
 	wallCollision(){
@@ -40,10 +41,12 @@ class NPB extends Object{
 			}
 	}
 
+	//returns true if the player lost
 	move(){
 		this.wallCollision();
 		this.bitmap.setTransform(this.bitmap.x+(this.directionX*this.speed),this.bitmap.y+(this.directionY*this.speed), this.bitmap.scaleX, this.bitmap.scaleY);
+		return this.speed < this.minSpeed;
 	}
 
 
-}0
+}
