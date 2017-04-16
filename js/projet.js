@@ -7,7 +7,9 @@ var stage;
 var player;
 var npb;
 
-var brick = [];
+//var brick = [];
+var levels;
+var cpt_lvl;
 
 function lost(){
 	player.immuned = 100;
@@ -41,8 +43,10 @@ function init(){
 	npb.draw(stage);
 
 	WorldObject.pjs = [];
-
-	brick.push(new Brick(6, 0, 4));
+	cpt_lvl= 1;
+	levels= Level.loadLevels(cwidth, cheight, cpt_lvl);
+	//levels[cpt_lvl];
+	/*brick.push(new Brick(6, 0, 4));
 	brick.push(new Brick(6, 1, 4));
 	brick.push(new Brick(6, 2, 4));
 	brick.push(new Brick(6, 3, 4));
@@ -57,7 +61,8 @@ function init(){
 	for(var i=0; i<brick.length; ++i)
 		brick[i].draw(stage);
 
-	stage.update();
+	stage.update();*/
+	console.log(levels.availableBricks.length);
 	gameLoop();
 }
 
@@ -79,8 +84,12 @@ function gameLoop() {
 
 	//Collision: Collision Balle-Briques, Balle-Player, Proj-hauteurif->, 
 
-	for(var i=0; i<brick.length; ++i)
-		brick[i].ball_collision(npb, player, stage);
+	for(var i=0; i<levels.availableBricks.length; ++i)
+		if (levels.availableBricks[i].ball_collision(npb, player, stage)==true) {
+			levels.availableBricks.splice(i,1);
+			console.log(levels.availableBricks.length);
+		}
+
 	
 
 	//Correction: Briques.lvl -1/remove, Player.life -1/Game OVer, clean proj outside map, Balle direction and position
