@@ -47,7 +47,7 @@ function init(){
 	cpt_lvl= 1;
 	levels= Level.loadLevels(cwidth, cheight, cpt_lvl);
 	stage.update();
-	
+	document.getElementById("loading").style.visibility= "hidden";
 	gameLoop();
 }
 
@@ -70,7 +70,7 @@ function gameLoop() {
 	//Collision: Collision Balle-Briques, Balle-Player, Proj-hauteurif->, 
 
 	for(var i=0; i<levels.availableBricks.length; ++i)
-		if (levels.availableBricks[i].ball_collision(npb, player, stage)==true) 
+		if (levels.availableBricks[i].ball_collision(npb, stage)==true) 
 			levels.availableBricks.splice(i,1);
 
 	for(var i=0; i<WorldObject.bonus.length; ++i){
