@@ -43,16 +43,12 @@ function init(){
 	npb.draw(stage);
 
 	WorldObject.pjs = [];
-<<<<<<< HEAD
 	cpt_lvl= 1;
 	levels= Level.loadLevels(cwidth, cheight, cpt_lvl);
 	//levels[cpt_lvl];
-	/*brick.push(new Brick(6, 0, 4));
-=======
 	WorldObject.bonus = [];
 
-	brick.push(new Brick(6, 0, 4));
->>>>>>> 9436c875c7f841da95064bc1ff43e807f6a3584e
+	/*brick.push(new Brick(6, 0, 4));
 	brick.push(new Brick(6, 1, 4));
 	brick.push(new Brick(6, 2, 4));
 	brick.push(new Brick(6, 3, 4));
