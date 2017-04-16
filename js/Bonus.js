@@ -11,7 +11,7 @@ class Bonus extends Object{
 
 	static new_bonus(posX, posY, stage){
 		var rand = Math.random()*100;
-		if(rand >= 95){
+		if(rand >= 80){
 			var size = WorldObject.bonus.length;
 			WorldObject.bonus.push(new Bonus(posX, posY, rand));
 			WorldObject.bonus[size].draw(stage);
@@ -27,12 +27,5 @@ class Bonus extends Object{
 				stage.removeChild(this.bitmap);
 				this.up = false;
 			}
-	}
-
-	bonus(){
-		if(this.rand >= 95){
-			
-		}
-		//else if()
 	}
 }

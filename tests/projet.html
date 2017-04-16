@@ -5,7 +5,17 @@
 	</head>
 	
 	<body onload="init();" style="margin: 0px; overflow:hidden;">
-	  <canvas id="ProjectCanvas" width="500" height="300" style="background-color: #eee">CANVAS</canvas>
+		<div id="loading" style="visibility:visible; position:absolute; width: 100%; height: 100%; background-color: white;">
+			<table style="height:100%; width:100%; margin:0; padding:0; border:0; vertical-align: middle; text-align: center;">
+				<tr>
+					<td><img src="test.gif"/></td>
+				</tr>
+				<tr>
+					<td><p style="font-size:600%;">Loading...</p></td>
+				</tr>
+			</table>
+		</div>
+		<canvas id="ProjectCanvas" width="500" height="300" style="background-color: #eee">CANVAS</canvas>
 	</body>
 
 	<script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
