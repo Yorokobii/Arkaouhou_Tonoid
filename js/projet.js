@@ -82,3 +82,9 @@ function gameLoop() {
 	setTimeout(gameLoop, 10);
 }
 //************************
+
+function endGame() {
+	player.shock_wave_meter=3;
+	player.shockwave();
+	player.shock_wave_meter=0;
+}

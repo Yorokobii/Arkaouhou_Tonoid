@@ -11,7 +11,7 @@ class Bonus extends Object{
 
 	static new_bonus(posX, posY, stage){
 		var rand = Math.random()*100;
-		if(rand >= 80){
+		if(rand >= 90){
 			var size = WorldObject.bonus.length;
 			WorldObject.bonus.push(new Bonus(posX, posY, rand));
 			WorldObject.bonus[size].draw(stage);
