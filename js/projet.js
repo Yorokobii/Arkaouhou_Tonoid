@@ -44,7 +44,7 @@ function init(){
 
 	WorldObject.pjs = [];
 	WorldObject.bonus = [];
-	cpt_lvl= 1;
+	cpt_lvl= 2;
 	levels= Level.loadLevels(cwidth, cheight, cpt_lvl);
 	stage.update();
 	document.getElementById("loading").style.visibility= "hidden";
