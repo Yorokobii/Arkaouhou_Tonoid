@@ -21,11 +21,6 @@ class Player{
 		this.shock_wave_shape = new createjs.Shape();
 		//////////
 
-		//invinsibility power
-		this.invinsible = new createjs.Shape();
-		this.invinsible.graphics.beginFill("#000000").drawRect(10, 10, this.shock_wave_meter_max*33, 20);
-		this.invinsible.graphics.beginFill("#ff0000").drawRect(10, 10, this.shock_wave_meter*33, 20);
-
 		//load the bitmap
 		this.hitboxPJ = new createjs.Bitmap("../ressources/core.png");
 		this.hitboxB = new createjs.Bitmap("../ressources/bar.png");
@@ -134,13 +129,13 @@ class Player{
 		this.shock_waveY = this.hitboxPJ.y+6;
 		this.shock_wave_meter_shot = this.shock_wave_meter;
 		this.shock_wave_max = 1000/(3-this.shock_wave_meter_shot);
+		WorldObject.hud.refresh(player);
 	}
 
 	draw(_stage){
 		_stage.addChild(this.shock_wave_shape);
 		_stage.addChild(this.hitboxB);
 		_stage.addChild(this.hitboxPJ);
-		_stage.addChild(this.invinsible);
 	}
 
 	Handling(ball, stage){
@@ -151,17 +146,6 @@ class Player{
 
 		//ball collision
 		var ret = this.ball_collision(ball);
-
-		//charge power
-		if(this.shock_wave_meter < this.shock_wave_meter_max){
-			this.invinsible.graphics.clear();
-			this.invinsible.graphics.beginFill("#000000").drawRect(10, 10, this.shock_wave_meter_max*33, 20);
-			this.invinsible.graphics.beginFill("#ff0000").drawRect(10, 10, this.shock_wave_meter*33, 20);
-		}
-		else{
-			this.invinsible.graphics.clear();
-			this.invinsible.graphics.beginFill("#00ff00").drawRect(10, 10, this.shock_wave_meter_max*33, 20);
-		}
 		
 		//move
 		this.keyPressed();

@@ -3,7 +3,7 @@ class Brick extends Object{
 		//atributes
 		super("../ressources/brick_level_" + _level + ".jpg");
 
-		this.bitmap.setTransform((_x*64)+15, _y*16);
+		this.bitmap.setTransform((_x*64)+15, (_y*16)+50);
 
 		this.level = _level;
 	}

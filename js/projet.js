@@ -41,6 +41,9 @@ function init(){
 	//création de la NPB (modif)
 	npb = new NPB();
 	npb.draw(stage);
+	
+	WorldObject.hud = new HUD();
+	WorldObject.hud.draw(stage);
 
 	WorldObject.pjs = [];
 	WorldObject.bonus = [];
@@ -76,7 +79,6 @@ function gameLoop() {
 	for(var i=0; i<WorldObject.bonus.length; ++i){
 		WorldObject.bonus[i].move(player, stage);
 	}
-
 	
 	stage.update();
 	setTimeout(gameLoop, 10);

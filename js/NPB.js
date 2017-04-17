@@ -21,7 +21,7 @@ class NPB extends Object{
 			if(this.loaded){
 
 				//vertical
-				if(this.bitmap.y < 0 && this.directionY < 0){
+				if(this.bitmap.y < 50 && this.directionY < 0){
 					this.directionY = (-this.directionY);
 				}
 

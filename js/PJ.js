@@ -64,7 +64,7 @@ class PJ extends Object{
 				if(this.bitmap.x < 0 || this.bitmap.x > WorldObject.cwidth - this.bounds.width){//left || right
 					this.directionX = -this.directionX;
 				}
-				if(this.bitmap.y < 0){//up
+				if(this.bitmap.y < 50){//up
 					this.directionY = -this.directionY;
 				}
 				//////
