@@ -31,14 +31,14 @@ class Brick extends Object{
 				//deviate the ball
 				if(rect.width >= rect.height){ //hit from top
 					ball.directionY = -ball.directionY;
-					if(rect.y <= ball.bitmap.y)
+					if(ball.directionY > 0)
 						ball.bitmap.y += (rect.height+1);
 					else
 						ball.bitmap.y -= (rect.height+1);
 				}
 				else{//hit from side
 					ball.directionX = -ball.directionX;
-					if(rect.x <= ball.bitmap.x)
+					if(ball.directionX > 0)
 						ball.bitmap.x += (rect.width+1);
 					else
 						ball.bitmap.x -= (rect.width+1);
