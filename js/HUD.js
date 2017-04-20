@@ -8,31 +8,83 @@ class HUD extends Object{
 
 		this.power_meter_count = new createjs.Shape();
 
-		this.life1 = new createjs.Bitmap("../ressources/1-2h.png");
-		this.life1.setTransform(150, 0, 0.09, 0.09);
-		this.life2 = new createjs.Bitmap("../ressources/1-2h.png");
-		this.life2.setTransform(190, 0, 0.09, 0.09);
-		this.life3 = new createjs.Bitmap("../ressources/3-4h.png");
-		this.life3.setTransform(230, 0, 0.09, 0.09);
-		this.life4 = new createjs.Bitmap("../ressources/3-4h.png");
-		this.life4.setTransform(280, 0, 0.09, 0.09);
-		this.life5 = new createjs.Bitmap("../ressources/5h.png");
-		this.life5.setTransform(330, 0, 0.1, 0.1);
+		this.lifes = [
+			{first: new createjs.Bitmap("../ressources/5h.png"), second: new createjs.Bitmap("../ressources/3-4h.png"), third: new createjs.Bitmap("../ressources/1-2h.png")},
+			{first: new createjs.Bitmap("../ressources/5h.png"), second: new createjs.Bitmap("../ressources/3-4h.png"), third: new createjs.Bitmap("../ressources/1-2h.png")},
+			{first: new createjs.Bitmap("../ressources/5h.png"), second: new createjs.Bitmap("../ressources/3-4h.png"), third: null},
+			{first: new createjs.Bitmap("../ressources/5h.png"), second: new createjs.Bitmap("../ressources/3-4h.png"), third: null},
+			{first: new createjs.Bitmap("../ressources/5h.png"), second: null, third: null}
+		]
+
+		this.lifes.forEach(function(life){
+			life.first.visible = true;
+			if(life.second)
+				life.second.visible = false;
+			if(life.third)
+				life.third.visible = false;
+		});
+
+		this.lifes[0].first.setTransform(150, 0, 0.1, 0.1);
+		this.lifes[0].second.setTransform(150, 0, 0.09, 0.09);
+		this.lifes[0].third.setTransform(150, 0, 0.09, 0.09);
+
+		this.lifes[1].first.setTransform(210, 0, 0.1, 0.1);
+		this.lifes[1].second.setTransform(210, 0, 0.09, 0.09);
+		this.lifes[1].third.setTransform(210, 0, 0.09, 0.09);
+
+		this.lifes[2].first.setTransform(270, 0, 0.1, 0.1);
+		this.lifes[2].second.setTransform(270, 0, 0.09, 0.09);
+
+		this.lifes[3].first.setTransform(330, 0, 0.1, 0.1);
+		this.lifes[3].second.setTransform(330, 0, 0.09, 0.09);
+
+		this.lifes[4].first.setTransform(390, 0, 0.1, 0.1);
+
+		this.current_lives = 5;
 	}
 
 	draw(_stage){
 		_stage.addChild(this.bitmap);
 		_stage.addChild(this.power_meter);
 		_stage.addChild(this.power_meter_count);
-		_stage.addChild(this.life1);
-		_stage.addChild(this.life2);
-		_stage.addChild(this.life3);
-		_stage.addChild(this.life4);
-		_stage.addChild(this.life5);
+
+		this.lifes.forEach(function(life){
+			_stage.addChild(life.first);
+			if(life.second)
+				_stage.addChild(life.second);
+			if(life.third)
+				_stage.addChild(life.third);
+		});
 	}
 
 	refresh(player){
 		//vie du joueur
+		if(player.life != this.current_lives){
+			this.current_lives = player.life;
+
+			//all hidden
+			this.lifes.forEach(function(life){
+				life.first.visible = false;
+				if(life.second)
+					life.second.visible = false;
+				if(life.third)
+					life.third.visible = false;
+			});
+
+			//show les bons bitmaps
+			for(var i=0; i<player.life; ++i){
+				if(player.life > 4)
+					this.lifes[i].first.visible = true;
+				else if(player.life > 2){
+					if(this.lifes[i].second)
+						this.lifes[i].second.visible = true;
+				}
+				else{
+					if(this.lifes[i].third)
+						this.lifes[i].third.visible = true;
+				}
+			}
+		}
 
 		//power
 		this.power_meter_count.graphics.clear();
@@ -40,11 +92,13 @@ class HUD extends Object{
 	}
 
 	reset(){
-		this.life1.visible = true;
-		this.life2.visible = true;
-		this.life3.visible = true;
-		this.life4.visible = true;
-		this.life5.visible = true;
+		this.lifes.forEach(function(life){
+			life.first.visible = true;
+			if(life.second)
+				life.second.visible = false;
+			if(life.third)
+				life.third.visible = false;
+		});
 
 		this.power_meter_count = 0;
 	}

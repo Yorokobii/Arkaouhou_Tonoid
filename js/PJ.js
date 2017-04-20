@@ -77,8 +77,11 @@ class PJ extends Object{
 	collision_player(player){
 		if(this.bitmap.y > WorldObject.cheight - WorldObject.cheight/10){
 			var pbounds = player.hitboxPJ.getTransformedBounds();
-			if(this.bitmap.getTransformedBounds().intersects(player.hitboxPJ.getTransformedBounds().setValues(pbounds.x + ((pbounds.width - 2)/2), pbounds.y + ((pbounds.height - 2)/2), 2, 2)) && player.immuned <= 0)
-					return true;
+			if(this.bitmap.getTransformedBounds().intersects(player.hitboxPJ.getTransformedBounds().setValues(pbounds.x + ((pbounds.width - 2)/2), pbounds.y + ((pbounds.height - 2)/2), 2, 2)) && player.immuned <= 0){
+				player.life--;
+				WorldObject.hud.refresh(player);
+				return true;
+			}
 			else return false;
 		}
 		else return false;

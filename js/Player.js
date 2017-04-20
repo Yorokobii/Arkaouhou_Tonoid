@@ -5,6 +5,8 @@ class Player{
 		this.hitboxB; //hitbox ball
 		this.PJbounds;
 		this.Bbounds;
+		this.life = 5;
+		this.max_life = 5;
 		this.direction = 0; //-1 left 0 no movement 1 right
 		this.active_bar = -50; //ball bar activation timer
 		this.space_raised = true;
@@ -64,7 +66,8 @@ class Player{
 		if(this.keys[32] && this.active_bar<=-50 && this.space_raised){
 			this.active_bar = 50;
 			this.space_raised = false;
-			WorldObject.game_start = false;
+			if(WorldObject.game_start)
+				WorldObject.game_start = false;
 		}
 
 		if(this.keys[68]) //D
@@ -83,12 +86,15 @@ class Player{
 	//velocity is changed accordingly
 	ball_collision(ball){
 		if(this.immuned > 0) this.immuned--;
-		if(ball.loaded && ball.bitmap.y+ball.bounds.width>=WorldObject.cheight - WorldObject.cheight/9){
+		if(!WorldObject.game_start && ball.loaded && ball.bitmap.y+ball.bounds.width>=WorldObject.cheight - WorldObject.cheight/9){
 			//collision with ball without spacebar
 			if(this.active_bar<=0){
 				if(ball.bitmap.getTransformedBounds().intersects(this.hitboxPJ.getTransformedBounds()))
-					if(this.immuned <= 0)
+					if(this.immuned <= 0){
+						this.life--;
+						WorldObject.hud.refresh(player);
 						return true;
+					}
 					else
 						return false;
 				else
