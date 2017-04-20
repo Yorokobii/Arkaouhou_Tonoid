@@ -41,6 +41,13 @@ class NPB extends Object{
 			}
 	}
 
+	attachToPlayer(player){
+		if(this.loaded){
+			this.bitmap.x = (player.hitboxB.x + player.hitboxB.getBounds().width/2) - this.bounds.width/2;
+			this.bitmap.y = player.hitboxB.y - (this.bounds.height + 1);
+		}
+	}
+
 	//returns true if the player lost
 	move(){
 		this.wallCollision();

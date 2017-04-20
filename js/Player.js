@@ -64,6 +64,7 @@ class Player{
 		if(this.keys[32] && this.active_bar<=-50 && this.space_raised){
 			this.active_bar = 50;
 			this.space_raised = false;
+			WorldObject.game_start = false;
 		}
 
 		if(this.keys[68]) //D
