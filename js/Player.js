@@ -78,7 +78,7 @@ class Player{
 	}
 
 	initialPlace(){
-		this.hitboxPJ.setTransform(WorldObject.cwidth/2-this.PJbounds.width/2, WorldObject.cheight - this.PJbounds.height);
+		this.hitboxPJ.setTransform(WorldObject.cwidth/2-this.hitboxPJ.getBounds().width/2, WorldObject.cheight - this.hitboxPJ.getBounds().height);
 		this.hitboxB.setTransform(WorldObject.cwidth/2-this.Bbounds.width/2, WorldObject.cheight - this.Bbounds.height);
 	}
 

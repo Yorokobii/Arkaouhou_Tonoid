@@ -126,6 +126,7 @@ function nextLevel() {
 	npb.initialPlace();
 	player.initialPlace();			// en dessous du sol ????
 
+	WorldObject.game_start = 1;
 	cpt_lvl++;
 	levels= Level.loadLevels(cwidth, cheight, cpt_lvl);
 	stage.update();
