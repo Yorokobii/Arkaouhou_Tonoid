@@ -22,8 +22,10 @@ class Bonus extends Object{
 		this.bitmap.y+=3;
 		if(this.loaded && this.up && this.bitmap.y > WorldObject.cheight - WorldObject.cheight/10)
 			if(this.bitmap.getTransformedBounds().intersects(player.hitboxPJ.getTransformedBounds())){
-				if(player.shock_wave_meter < player.shock_wave_meter_max)
+				if(player.shock_wave_meter < player.shock_wave_meter_max){
 					player.shock_wave_meter += 1;
+					WorldObject.hud.refresh(player);
+				}
 				stage.removeChild(this.bitmap);
 				this.up = false;
 			}

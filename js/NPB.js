@@ -21,7 +21,7 @@ class NPB extends Object{
 			if(this.loaded){
 
 				//vertical
-				if(this.bitmap.y < 0 && this.directionY < 0){
+				if(this.bitmap.y < 50 && this.directionY < 0){
 					this.directionY = (-this.directionY);
 				}
 
@@ -39,6 +39,13 @@ class NPB extends Object{
 					this.directionX = (-this.directionX);
 				}
 			}
+	}
+
+	attachToPlayer(player){
+		if(this.loaded){
+			this.bitmap.x = (player.hitboxB.x + player.hitboxB.getBounds().width/2) - this.bounds.width/2;
+			this.bitmap.y = player.hitboxB.y - (this.bounds.height + 1);
+		}
 	}
 
 	//returns true if the player lost

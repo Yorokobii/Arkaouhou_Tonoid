@@ -35,12 +35,17 @@ function init(){
 	stage = new createjs.Stage("ProjectCanvas");
 	/////////////
 
+	WorldObject.game_start = true; //0 start : 1 middle-game;
+
 	player = new Player();
 	player.draw(stage);
 
 	//création de la NPB (modif)
 	npb = new NPB();
 	npb.draw(stage);
+	
+	WorldObject.hud = new HUD();
+	WorldObject.hud.draw(stage);
 
 	WorldObject.pjs = [];
 	WorldObject.bonus = [];
@@ -56,25 +61,31 @@ function init(){
 //**************gameLoop*********************
 function gameLoop() {
 
-	for(var i=0; i<WorldObject.pjs.length; ++i){
-		WorldObject.pjs[i].move(player);
-		if(WorldObject.pjs[i].collision_player(player) && player.immuned == 0)
+	if(!WorldObject.game_start){
+		for(var i=0; i<WorldObject.pjs.length; ++i){
+			WorldObject.pjs[i].move(player);
+			if(WorldObject.pjs[i].collision_player(player) && player.immuned == 0)
+				lost();
+		}
+
+		//déplacement -> collision -> correction
+		if(player.Handling(npb, stage) && player.immuned == 0)
 			lost();
+		npb.move();
+
+		//Collision: Collision Balle-Briques, Balle-Player, Proj-hauteurif->, 
+
+		for(var i=0; i<levels.availableBricks.length; ++i)
+			if (levels.availableBricks[i].ball_collision(npb, stage)==true) 
+				levels.availableBricks.splice(i,1);
+
+		for(var i=0; i<WorldObject.bonus.length; ++i){
+			WorldObject.bonus[i].move(player, stage);
+		}
 	}
-
-	//déplacement -> collision -> correction
-	if(player.Handling(npb, stage) && player.immuned == 0)
-		lost();
-	npb.move();
-
-	//Collision: Collision Balle-Briques, Balle-Player, Proj-hauteurif->, 
-
-	for(var i=0; i<levels.availableBricks.length; ++i)
-		if (levels.availableBricks[i].ball_collision(npb, stage)==true) 
-			levels.availableBricks.splice(i,1);
-
-	for(var i=0; i<WorldObject.bonus.length; ++i){
-		WorldObject.bonus[i].move(player, stage);
+	else{
+		player.Handling(npb, stage);
+		npb.attachToPlayer(player);
 	}
 
 	if (levels.availableBricks.length==0){
@@ -109,8 +120,6 @@ function endGame() {
 }
 
 function nextLevel() {
-	
-
 	npb.speed = 0;
 	npb.directionX = 0;
 	npb.directionY = (-1);
