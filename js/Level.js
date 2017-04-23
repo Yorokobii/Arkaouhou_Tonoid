@@ -47,18 +47,18 @@ class Level{
 	static level1(cwidth, cheight){
 
 		var level = new Level();
-		level.bricks.push(new Brick(6, 0, 4));
+		/*level.bricks.push(new Brick(6, 0, 4));
 		level.bricks.push(new Brick(6, 1, 4));
 		level.bricks.push(new Brick(6, 2, 4));
 		level.bricks.push(new Brick(6, 3, 4));
 		level.bricks.push(new Brick(6, 4, 4));
-		level.bricks.push(new Brick(6, 5, 4));
-		level.bricks.push(new Brick(6, 6, 4));
-		level.bricks.push(new Brick(6, 7, 4));
+		level.bricks.push(new Brick(6, 5, 4));*/
+		level.bricks.push(new Brick(2, 6, 4));
+		/*level.bricks.push(new Brick(6, 7, 4));
 		level.bricks.push(new Brick(6, 8, 4));
 		level.bricks.push(new Brick(6, 9, 4));
 		level.bricks.push(new Brick(6, 10, 4));
-		level.bricks.push(new Brick(6, 11, 4));
+		level.bricks.push(new Brick(6, 11, 4));*/
 		for(var i=0; i<level.bricks.length; ++i){
 			level.bricks[i].draw(stage);
 			level.availableBricks.push(level.bricks[i]);
@@ -73,7 +73,7 @@ class Level{
 
 		var level = new Level();
 		level.bricks.push(new Brick(3, 5, 4));
-		level.bricks.push(new Brick(3, 6, 4));
+		/*level.bricks.push(new Brick(3, 6, 4));
 		level.bricks.push(new Brick(3, 4, 5));
 		level.bricks.push(new Brick(3, 7, 5));
 		level.bricks.push(new Brick(3, 4, 6));
@@ -105,7 +105,7 @@ class Level{
 		level.bricks.push(new Brick(5, 5, 8));
 		level.bricks.push(new Brick(5, 6, 8));
 		level.bricks.push(new Brick(6, 5, 7));
-		level.bricks.push(new Brick(6, 6, 7));
+		level.bricks.push(new Brick(6, 6, 7));*/
 		for(var i=0; i<level.bricks.length; ++i){
 			level.bricks[i].draw(stage);
 			level.availableBricks.push(level.bricks[i]);

@@ -44,7 +44,7 @@ function init(){
 
 	WorldObject.pjs = [];
 	WorldObject.bonus = [];
-	cpt_lvl= 2;
+	cpt_lvl= 1;
 	levels= Level.loadLevels(cwidth, cheight, cpt_lvl);
 	stage.update();
 	document.getElementById("loading").style.visibility= "hidden";
@@ -77,14 +77,52 @@ function gameLoop() {
 		WorldObject.bonus[i].move(player, stage);
 	}
 
-	
-	stage.update();
-	setTimeout(gameLoop, 10);
+	if (levels.availableBricks.length==0){
+		for(var i=0; i<WorldObject.bonus.length; ++i){
+			stage.removeChild(WorldObject.bonus[i].bitmap);
+			WorldObject.bonus[i].up = false;
+		}
+		document.getElementById("loading").style.visibility= "";
+		npb.speed = 0;
+		//player.shock_wave_meter=3;			????
+		//player.shock_wave_meter_shot=1;
+		player.shockwave();
+		console.log("yoyo");
+		//player.shock_wave_meter=0;
+		endGame();
+	}
+	else {
+		stage.update();
+		setTimeout(gameLoop, 10);
+	}
 }
+
 //************************
 
 function endGame() {
-	player.shock_wave_meter=3;
-	player.shockwave();
-	player.shock_wave_meter=0;
+	player.Handling(npb, stage);
+	stage.update();
+	if (player.shock_wave==-1)
+		nextLevel();
+	else
+		setTimeout(endGame, 10);
 }
+
+function nextLevel() {
+	
+
+	npb.speed = 0;
+	npb.directionX = 0;
+	npb.directionY = (-1);
+	npb.initialPlace();
+	player.initialPlace();			// en dessous du sol ????
+
+	cpt_lvl++;
+	levels= Level.loadLevels(cwidth, cheight, cpt_lvl);
+	stage.update();
+	npb.speed=3;
+	document.getElementById("loading").style.visibility= "hidden";
+	gameLoop();	
+
+}
+
