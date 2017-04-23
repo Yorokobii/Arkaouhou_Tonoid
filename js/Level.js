@@ -47,14 +47,14 @@ class Level{
 	static level1(cwidth, cheight){
 
 		var level = new Level();
-		/*level.bricks.push(new Brick(1, 2, 7));
+		level.bricks.push(new Brick(1, 2, 7));
 		level.bricks.push(new Brick(2, 3, 6));
 		level.bricks.push(new Brick(3, 4, 5));
-		level.bricks.push(new Brick(4, 5, 4));*/
+		level.bricks.push(new Brick(4, 5, 4));
 		level.bricks.push(new Brick(4, 6, 4));
-		/*level.bricks.push(new Brick(3, 7, 5));
+		level.bricks.push(new Brick(3, 7, 5));
 		level.bricks.push(new Brick(2, 8, 6));
-		level.bricks.push(new Brick(1, 9, 7));*/
+		level.bricks.push(new Brick(1, 9, 7));
 		for(var i=0; i<level.bricks.length; ++i){
 			level.bricks[i].draw(stage);
 			level.availableBricks.push(level.bricks[i]);

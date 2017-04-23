@@ -3,7 +3,7 @@ class NPB extends Object{
 		//atributes
 		super("../ressources/npb.png");
 		this.speed = 3;
-		this.maxSpeed = 100;
+		this.maxSpeed = 7;
 		this.minSpeed = 2;
 		this.directionX = 0;
 		this.directionY = (-1);
