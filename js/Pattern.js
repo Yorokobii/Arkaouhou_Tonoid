@@ -49,8 +49,6 @@ class Pattern{
 			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 30, 0, 2, 0));
 			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 45, 0, 2, 0));
 			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 60, 0, 2, 0));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 75, 0, 2, 0));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 105, 0, 2, 0));
 			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 120, 0, 2, 0));
 			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 135, 0, 2, 0));
 			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 150, 0, 2, 0));
@@ -60,8 +58,6 @@ class Pattern{
 			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 210, 0, 2, 0));
 			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 225, 0, 2, 0));
 			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 240, 0, 2, 0));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 255, 0, 2, 0));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 285, 0, 2, 0));
 			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 300, 0, 2, 0));
 			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 315, 0, 2, 0));
 			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 330, 0, 2, 0));
