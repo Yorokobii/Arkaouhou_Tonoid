@@ -39,6 +39,7 @@ function init(){
 
 	WorldObject.game_start = true; //0 start : 1 middle-game;
 	WorldObject.pause = false;
+	WorldObject.end = false;
 	pause_screen = new createjs.Bitmap("../ressources/pause.png");
 	pause_screen.visible = false;
 	stage.addChild(pause_screen);
@@ -66,58 +67,68 @@ function init(){
 
 //**************gameLoop*********************
 function gameLoop() {
-	if(!WorldObject.pause){
-		pause_screen.visible = false;
-		if(!WorldObject.game_start){
-			for(var i=0; i<WorldObject.pjs.length; ++i){
-				WorldObject.pjs[i].move(player);
-				if(WorldObject.pjs[i].collision_player(player) && player.immuned == 0)
+	if(!WorldObject.end){
+		if(!WorldObject.pause){
+			pause_screen.visible = false;
+			if(!WorldObject.game_start){
+				for(var i=0; i<WorldObject.pjs.length; ++i){
+					WorldObject.pjs[i].move(player);
+					if(WorldObject.pjs[i].collision_player(player) && player.immuned == 0)
+						lost();
+				}
+
+				//déplacement -> collision -> correction
+				if(player.Handling(npb, stage) && player.immuned == 0)
 					lost();
+				
+				if(npb.move() || player.life<1) {
+					setTimeout(endGame(false), 10000);		//				?????
+				}
+
+				//Collision: Collision Balle-Briques, Balle-Player, Proj-hauteurif->, 
+
+				for(var i=0; i<levels.availableBricks.length; ++i)
+					if (levels.availableBricks[i].ball_collision(npb, stage)) 
+						levels.availableBricks.splice(i,1);
+
+				for(var i=0; i<WorldObject.bonus.length; ++i){
+					WorldObject.bonus[i].move(player, stage);
+				}
+			}
+			else{
+				player.Handling(npb, stage);
+				npb.attachToPlayer(player);
 			}
 
-			//déplacement -> collision -> correction
-			if(player.Handling(npb, stage) && player.immuned == 0)
-				lost();
-			npb.move();
-
-			//Collision: Collision Balle-Briques, Balle-Player, Proj-hauteurif->, 
-
-			for(var i=0; i<levels.availableBricks.length; ++i)
-				if (levels.availableBricks[i].ball_collision(npb, stage)) 
-					levels.availableBricks.splice(i,1);
-
-			for(var i=0; i<WorldObject.bonus.length; ++i){
-				WorldObject.bonus[i].move(player, stage);
+			if (levels.availableBricks.length==0){
+				for(var i=0; i<WorldObject.bonus.length; ++i){
+					stage.removeChild(WorldObject.bonus[i].bitmap);
+					WorldObject.bonus[i].up = false;
+				}
+				document.getElementById("loading").style.visibility= "";
+				nextLevel();
 			}
+			stage.update();
 		}
 		else{
-			player.Handling(npb, stage);
-			npb.attachToPlayer(player);
+			pause_screen.visible = true;
+			stage.update();
 		}
-
-		if (levels.availableBricks.length==0){
-			for(var i=0; i<WorldObject.bonus.length; ++i){
-				stage.removeChild(WorldObject.bonus[i].bitmap);
-				WorldObject.bonus[i].up = false;
-			}
-			document.getElementById("loading").style.visibility= "";
-			nextLevel();
-		}
-		stage.update();
+		setTimeout(gameLoop, 10);
 	}
-	else{
-		pause_screen.visible = true;
-		stage.update();
-	}
-	setTimeout(gameLoop, 10);
 }
 
 //************************
 
-/*function endGame() {
-	
+function endGame(victory) {
+	if (victory)
+		document.getElementById("victory").style.visibility= "";
+	else
+		document.getElementById("defeat").style.visibility= "";
+
+	WorldObject.end = true;
 }
-*/
+
 function nextLevel() {
 	player.Handling(npb, stage);
 	for (var i=0; i < WorldObject.pjs.length; ++i) {
@@ -132,6 +143,9 @@ function nextLevel() {
 	player.initialPlace();
 	WorldObject.game_start = 1;
 	cpt_lvl++;
+	if (cpt_lvl>=4) {
+		endGame(true);
+	}
 	levels= Level.loadLevels(cwidth, cheight, cpt_lvl);
 	stage.update();
 	npb.speed=3;
