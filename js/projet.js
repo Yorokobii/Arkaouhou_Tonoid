@@ -109,7 +109,7 @@ function gameLoop() {
 function nextLevel() {
 	player.Handling(npb, stage);
 	for (var i=0; i < WorldObject.pjs.length; ++i) {
-		stage.removeChild(WorldObject.pjs[i]);
+		stage.removeChild(WorldObject.pjs[i].bitmap);
 	}
 	WorldObject.pjs=[];
 	stage.update();
