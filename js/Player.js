@@ -38,7 +38,13 @@ class Player{
 			this.hitboxB.setTransform(WorldObject.cwidth/2-this.Bbounds.width/2, WorldObject.cheight - this.Bbounds.height);
 		}
 
-		document.onkeydown = (e) =>  {this.keys[e.keyCode] = true;};
+		document.onkeydown = (e) =>  {
+			this.keys[e.keyCode] = true;
+			if(e.keyCode == 27 || e.keyCode == 80){
+				WorldObject.pause = !WorldObject.pause;
+				
+			}
+		};
 		document.onkeyup = (e) => {
 			this.keys[e.keyCode] = false;
 			//to detect that the space bar was raised
@@ -92,7 +98,7 @@ class Player{
 				if(ball.bitmap.getTransformedBounds().intersects(this.hitboxPJ.getTransformedBounds()))
 					if(this.immuned <= 0){
 						this.life--;
-						WorldObject.hud.refresh(player);
+						WorldObject.hud.refresh(player, null);
 						return true;
 					}
 					else
@@ -118,8 +124,10 @@ class Player{
 						ball.directionX /= magnitude;
 						ball.directionY /= magnitude;
 
-						if(ball.speed < ball.maxSpeed)
+						if(ball.speed < ball.maxSpeed){
 							if(++ball.speed > ball.maxSpeed) ball.speed = ball.maxSpeed;
+							WorldObject.hud.refresh(null, ball);
+						}
 
 					}
 				}
@@ -136,7 +144,7 @@ class Player{
 		this.shock_waveY = this.hitboxPJ.y+6;
 		this.shock_wave_meter_shot = this.shock_wave_meter;
 		this.shock_wave_max = 1000/(3-this.shock_wave_meter_shot);
-		WorldObject.hud.refresh(player);
+		WorldObject.hud.refresh(player, null);
 	}
 
 	draw(_stage){

@@ -2,7 +2,7 @@ class NPB extends Object{
 	constructor(){
 		//atributes
 		super("../ressources/npb.png");
-		this.speed = 3;
+		this.speed = 3.5;
 		this.maxSpeed = 7;
 		this.minSpeed = 2;
 		this.directionX = 0;
@@ -28,6 +28,7 @@ class NPB extends Object{
 				else if(this.bitmap.y > (WorldObject.cheight - this.bounds.height) && this.directionY > 0){
 					this.directionY = (-this.directionY);
 					this.speed-=0.5;
+					WorldObject.hud.refresh(null, this);
 				}
 
 				//horizontal

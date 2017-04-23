@@ -1,7 +1,10 @@
 class HUD extends Object{
 	constructor(posX, posY, _rand){
 		//atributes
-		super("../ressources/HUD.jpg");
+		super("../ressources/HUD.png");
+
+		this.ball_speed = new createjs.Shape();
+		this.ball_speed.graphics.beginFill("green").drawRect(400, 5, 400, 40);
 
 		this.power_meter = new createjs.Shape();
 		this.power_meter.graphics.beginFill("white").drawRect(10, 10, 99, 30);
@@ -44,6 +47,7 @@ class HUD extends Object{
 	}
 
 	draw(_stage){
+		_stage.addChild(this.ball_speed);
 		_stage.addChild(this.bitmap);
 		_stage.addChild(this.power_meter);
 		_stage.addChild(this.power_meter_count);
@@ -57,38 +61,61 @@ class HUD extends Object{
 		});
 	}
 
-	refresh(player){
-		//vie du joueur
-		if(player.life != this.current_lives){
-			this.current_lives = player.life;
+	refresh(player, ball){
+		if(player != null){
+			//vie du joueur
+			if(player.life != this.current_lives){
+				this.current_lives = player.life;
 
-			//all hidden
-			this.lifes.forEach(function(life){
-				life.first.visible = false;
-				if(life.second)
-					life.second.visible = false;
-				if(life.third)
-					life.third.visible = false;
-			});
+				//all hidden
+				this.lifes.forEach(function(life){
+					life.first.visible = false;
+					if(life.second)
+						life.second.visible = false;
+					if(life.third)
+						life.third.visible = false;
+				});
 
-			//show les bons bitmaps
-			for(var i=0; i<player.life; ++i){
-				if(player.life > 4)
-					this.lifes[i].first.visible = true;
-				else if(player.life > 2){
-					if(this.lifes[i].second)
-						this.lifes[i].second.visible = true;
+				//show les bons bitmaps
+				for(var i=0; i<player.life; ++i){
+					if(player.life > 4)
+						this.lifes[i].first.visible = true;
+					else if(player.life > 2){
+						if(this.lifes[i].second)
+							this.lifes[i].second.visible = true;
+					}
+					else{
+						if(this.lifes[i].third)
+							this.lifes[i].third.visible = true;
+					}
 				}
-				else{
-					if(this.lifes[i].third)
-						this.lifes[i].third.visible = true;
-				}
+			}
+
+			//power
+			this.power_meter_count.graphics.clear();
+			this.power_meter_count.graphics.beginFill("red").drawRect(10, 10, player.shock_wave_meter*33, 30);
+		}
+
+		if(ball != null){
+			//vitesse de la balle
+			if(ball.speed <= 2){
+				this.ball_speed.graphics.clear();
+				this.ball_speed.graphics.beginFill("#FF0000").drawRect(400, 5, 400, 40);
+			}
+			else if(ball.speed <= 2.5){
+				this.ball_speed.graphics.clear();
+				this.ball_speed.graphics.beginFill("#FF8000").drawRect(400, 5, 400, 40);
+			}
+			else if(ball.speed <= 3){
+				this.ball_speed.graphics.clear();
+				this.ball_speed.graphics.beginFill("#FFFF00").drawRect(400, 5, 400, 40);
+			}
+			else if(ball.speed > 3){
+				this.ball_speed.graphics.clear();
+				this.ball_speed.graphics.beginFill("green").drawRect(400, 5, 400, 40);
 			}
 		}
 
-		//power
-		this.power_meter_count.graphics.clear();
-		this.power_meter_count.graphics.beginFill("red").drawRect(10, 10, player.shock_wave_meter*33, 30);
 	}
 
 	reset(){
@@ -99,6 +126,9 @@ class HUD extends Object{
 			if(life.third)
 				life.third.visible = false;
 		});
+
+		this.ball_speed.graphics.clear();
+		this.ball_speed.graphics.beginFill("green").drawRect(400, 5, 400, 40);
 
 		this.power_meter_count = 0;
 	}
