@@ -96,10 +96,8 @@ function gameLoop() {
 		document.getElementById("loading").style.visibility= "";
 		nextLevel();
 	}
-	else {
-		stage.update();
-		setTimeout(gameLoop, 10);
-	}
+	stage.update();
+	setTimeout(gameLoop, 10);
 }
 
 //************************
@@ -110,25 +108,22 @@ function gameLoop() {
 */
 function nextLevel() {
 	player.Handling(npb, stage);
-	for (var i=0; WorldObject.pjs.length - 1; ++i) {
+	for (var i=0; i < WorldObject.pjs.length; ++i) {
 		stage.removeChild(WorldObject.pjs[i]);
 	}
 	WorldObject.pjs=[];
 	stage.update();
-	nextLevel();
 	npb.speed = 0;
 	npb.directionX = 0;
 	npb.directionY = (-1);
 	npb.initialPlace();
-	player.initialPlace();			
-
+	player.initialPlace();
 	WorldObject.game_start = 1;
 	cpt_lvl++;
 	levels= Level.loadLevels(cwidth, cheight, cpt_lvl);
 	stage.update();
 	npb.speed=3;
 	document.getElementById("loading").style.visibility= "hidden";
-	gameLoop();	
 
 }
 
