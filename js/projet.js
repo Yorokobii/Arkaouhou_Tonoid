@@ -94,13 +94,7 @@ function gameLoop() {
 			WorldObject.bonus[i].up = false;
 		}
 		document.getElementById("loading").style.visibility= "";
-		npb.speed = 0;
-		//player.shock_wave_meter=3;			????
-		//player.shock_wave_meter_shot=1;
-		player.shockwave();
-		console.log("yoyo");
-		//player.shock_wave_meter=0;
-		endGame();
+		nextLevel();
 	}
 	else {
 		stage.update();
@@ -110,21 +104,23 @@ function gameLoop() {
 
 //************************
 
-function endGame() {
-	player.Handling(npb, stage);
-	stage.update();
-	if (player.shock_wave==-1)
-		nextLevel();
-	else
-		setTimeout(endGame, 10);
+/*function endGame() {
+	
 }
-
+*/
 function nextLevel() {
+	player.Handling(npb, stage);
+	for (var i=0; WorldObject.pjs.length - 1; ++i) {
+		stage.removeChild(WorldObject.pjs[i]);
+	}
+	WorldObject.pjs=[];
+	stage.update();
+	nextLevel();
 	npb.speed = 0;
 	npb.directionX = 0;
 	npb.directionY = (-1);
 	npb.initialPlace();
-	player.initialPlace();			// en dessous du sol ????
+	player.initialPlace();			
 
 	WorldObject.game_start = 1;
 	cpt_lvl++;
