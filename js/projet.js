@@ -88,7 +88,7 @@ function rules() {
 		if(WorldObject.skip<8)
 			setTimeout(rules, 10);
 		else
-			gameLoop();
+			setTimeout(gameLoop, 200);
 }
 //**************gameLoop*********************
 function gameLoop() {
