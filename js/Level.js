@@ -19,8 +19,10 @@ class Level{
 			return Level.level2(cwidth, cheight);
 		else if (cpt_lvl==3)
 			return Level.level3(cwidth, cheight);
-
-
+		else if (cpt_lvl==4)
+			return Level.level4(cwidth, cheight);
+		else if (cpt_lvl==5)
+			return Level.level5(cwidth, cheight);
 	}
 
 
@@ -85,8 +87,8 @@ class Level{
 		}
 		stage.update();
 		return level;
-		
 	}
+
 
 	static level3(cwidth, cheight){
 
@@ -107,8 +109,10 @@ class Level{
 		level.bricks.push(new Brick(3, 7, 10));
 		level.bricks.push(new Brick(2, 5, 11));
 		level.bricks.push(new Brick(2, 6, 11));
+
 		level.bricks.push(new Brick(6, 0, 7));
 		level.bricks.push(new Brick(6, 11, 7));
+
 		level.bricks.push(new Brick(4, 5, 5));
 		level.bricks.push(new Brick(4, 6, 5));
 		level.bricks.push(new Brick(4, 5, 6));
@@ -133,6 +137,172 @@ class Level{
 		return level;
 		
 	}
+
+
+	static level4(cwidth, cheight){
+
+	var level = new Level();
+	level.bricks.push(new Brick(1, 0, 12));
+	level.bricks.push(new Brick(2, 1, 11));
+	level.bricks.push(new Brick(3, 2, 10));
+	level.bricks.push(new Brick(4, 3, 9));
+	level.bricks.push(new Brick(5, 4, 8));
+	level.bricks.push(new Brick(6, 5, 7));
+	level.bricks.push(new Brick(6, 6, 7));
+	level.bricks.push(new Brick(5, 7, 8));
+	level.bricks.push(new Brick(4, 8, 9));
+	level.bricks.push(new Brick(3, 9, 10));
+	level.bricks.push(new Brick(2, 10, 11));
+	level.bricks.push(new Brick(1, 11, 12));
+
+	level.bricks.push(new Brick(1, 0, 1));
+	level.bricks.push(new Brick(2, 1, 2));
+	level.bricks.push(new Brick(3, 2, 3));
+	level.bricks.push(new Brick(4, 3, 4));
+	level.bricks.push(new Brick(5, 4, 5));
+	level.bricks.push(new Brick(6, 5, 6));
+	level.bricks.push(new Brick(6, 6, 6));
+	level.bricks.push(new Brick(5, 7, 5));
+	level.bricks.push(new Brick(4, 8, 4));
+	level.bricks.push(new Brick(3, 9, 3));
+	level.bricks.push(new Brick(2, 10, 2));
+	level.bricks.push(new Brick(1, 11, 1));
+	for(var i=0; i<level.bricks.length; ++i){
+		level.bricks[i].draw(stage);
+		level.availableBricks.push(level.bricks[i]);
+	}
+
+	stage.update();
+	return level;
+}
+	static level5(cwidth, cheight){
+
+	var level = new Level();
+	
+	level.bricks.push(new Brick(1, 0, 0));
+	level.bricks.push(new Brick(1, 1, 0));
+	level.bricks.push(new Brick(1, 2, 0));
+	level.bricks.push(new Brick(1, 3, 0));
+	level.bricks.push(new Brick(1, 4, 0));
+	level.bricks.push(new Brick(1, 5, 0));
+	level.bricks.push(new Brick(1, 6, 0));
+	level.bricks.push(new Brick(1, 7, 0));
+	level.bricks.push(new Brick(1, 8, 0));
+	level.bricks.push(new Brick(1, 9, 0));
+	level.bricks.push(new Brick(1, 10, 0));
+	level.bricks.push(new Brick(1, 11, 0));
+	
+	level.bricks.push(new Brick(1, 0, 1));
+	level.bricks.push(new Brick(2, 1, 1));
+	level.bricks.push(new Brick(2, 2, 1));
+	level.bricks.push(new Brick(2, 3, 1));
+	level.bricks.push(new Brick(2, 4, 1));
+	level.bricks.push(new Brick(2, 5, 1));
+	level.bricks.push(new Brick(2, 6, 1));
+	level.bricks.push(new Brick(2, 7, 1));
+	level.bricks.push(new Brick(2, 8, 1));
+	level.bricks.push(new Brick(2, 9, 1));
+	level.bricks.push(new Brick(2, 10, 1));
+	level.bricks.push(new Brick(1, 11, 1));
+	
+	level.bricks.push(new Brick(1, 0, 2));
+	level.bricks.push(new Brick(3, 2, 2));
+	level.bricks.push(new Brick(3, 3, 2));
+	level.bricks.push(new Brick(3, 4, 2));
+	level.bricks.push(new Brick(3, 5, 2));
+	level.bricks.push(new Brick(3, 6, 2));
+	level.bricks.push(new Brick(3, 7, 2));
+	level.bricks.push(new Brick(3, 8, 2));
+	level.bricks.push(new Brick(3, 9, 2));
+	level.bricks.push(new Brick(1, 11, 2));
+	
+	level.bricks.push(new Brick(1, 0, 3));
+	level.bricks.push(new Brick(4, 3, 3));
+	level.bricks.push(new Brick(4, 4, 3));
+	level.bricks.push(new Brick(4, 5, 3));
+	level.bricks.push(new Brick(4, 6, 3));
+	level.bricks.push(new Brick(4, 7, 3));
+	level.bricks.push(new Brick(4, 8, 3));
+	level.bricks.push(new Brick(1, 11, 3));
+	
+	level.bricks.push(new Brick(1, 0, 4));
+	level.bricks.push(new Brick(5, 4, 4));
+	level.bricks.push(new Brick(5, 5, 4));
+	level.bricks.push(new Brick(5, 6, 4));
+	level.bricks.push(new Brick(5, 7, 4));
+	level.bricks.push(new Brick(1, 11, 4));
+	
+	level.bricks.push(new Brick(1, 0, 5));
+	level.bricks.push(new Brick(7, 2, 4));
+	level.bricks.push(new Brick(8, 2, 5));
+	level.bricks.push(new Brick(6, 5, 5));
+	level.bricks.push(new Brick(6, 6, 5));
+	level.bricks.push(new Brick(8, 9, 5));
+	level.bricks.push(new Brick(7, 9, 4));
+	level.bricks.push(new Brick(1, 11, 5));
+
+	
+	level.bricks.push(new Brick(1, 0, 10));
+	level.bricks.push(new Brick(1, 1, 10));
+	level.bricks.push(new Brick(1, 2, 10));
+	level.bricks.push(new Brick(1, 3, 10));
+	level.bricks.push(new Brick(1, 4, 10));
+	level.bricks.push(new Brick(1, 5, 10));
+	level.bricks.push(new Brick(1, 6, 10));
+	level.bricks.push(new Brick(1, 7, 10));
+	level.bricks.push(new Brick(1, 8, 10));
+	level.bricks.push(new Brick(1, 9, 10));
+	level.bricks.push(new Brick(1, 10, 10));
+	level.bricks.push(new Brick(1, 11, 10));
+	
+	level.bricks.push(new Brick(1, 0, 9));
+	level.bricks.push(new Brick(2, 1, 9));
+	level.bricks.push(new Brick(2, 2, 9));
+	level.bricks.push(new Brick(2, 3, 9));
+	level.bricks.push(new Brick(2, 4, 9));
+	level.bricks.push(new Brick(2, 5, 9));
+	level.bricks.push(new Brick(2, 6, 9));
+	level.bricks.push(new Brick(2, 7, 9));
+	level.bricks.push(new Brick(2, 8, 9));
+	level.bricks.push(new Brick(2, 9, 9));
+	level.bricks.push(new Brick(2, 10, 9));
+	level.bricks.push(new Brick(1, 11, 9));
+	
+	level.bricks.push(new Brick(1, 0, 8));
+	level.bricks.push(new Brick(3, 2, 8));
+	level.bricks.push(new Brick(3, 3, 8));
+	level.bricks.push(new Brick(3, 4, 8));
+	level.bricks.push(new Brick(3, 5, 8));
+	level.bricks.push(new Brick(3, 6, 8));
+	level.bricks.push(new Brick(3, 7, 8));
+	level.bricks.push(new Brick(3, 8, 8));
+	level.bricks.push(new Brick(3, 9, 8));
+	level.bricks.push(new Brick(1, 11, 8));
+	
+	level.bricks.push(new Brick(1, 0, 7));
+	level.bricks.push(new Brick(4, 3, 7));
+	level.bricks.push(new Brick(4, 4, 7));
+	level.bricks.push(new Brick(4, 5, 7));
+	level.bricks.push(new Brick(4, 6, 7));
+	level.bricks.push(new Brick(4, 7, 7));
+	level.bricks.push(new Brick(4, 8, 7));
+	level.bricks.push(new Brick(1, 11, 7));
+	
+	level.bricks.push(new Brick(1, 0, 6));
+	level.bricks.push(new Brick(5, 4, 6));
+	level.bricks.push(new Brick(5, 5, 6));
+	level.bricks.push(new Brick(5, 6, 6));
+	level.bricks.push(new Brick(5, 7, 6));
+	level.bricks.push(new Brick(1, 11, 6));
+
+	for(var i=0; i<level.bricks.length; ++i){
+		level.bricks[i].draw(stage);
+		level.availableBricks.push(level.bricks[i]);
+	}
+
+	stage.update();
+	return level;
+}
 
 	///////////////////////////////////
 }

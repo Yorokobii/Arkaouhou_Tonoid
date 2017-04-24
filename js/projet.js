@@ -57,7 +57,7 @@ function init(){
 
 	WorldObject.pjs = [];
 	WorldObject.bonus = [];
-	cpt_lvl= 1;
+	cpt_lvl= 5;
 	levels= Level.loadLevels(cwidth, cheight, cpt_lvl);
 	stage.update();
 	document.getElementById("loading").style.visibility= "hidden";
@@ -107,7 +107,7 @@ function gameLoop() {
 					lost();
 				
 				if(npb.move() || player.life<1) {
-					setTimeout(endGame(false), 10000);		//				?????
+					//setTimeout(endGame(false), 10000);		//				?????
 				}
 
 				//Collision: Collision Balle-Briques, Balle-Player, Proj-hauteurif->, 
@@ -168,7 +168,7 @@ function nextLevel() {
 	player.initialPlace();
 	WorldObject.game_start = 1;
 	cpt_lvl++;
-	if (cpt_lvl>=4) {
+	if (cpt_lvl>=6) {
 		endGame(true);
 	}
 	levels= Level.loadLevels(cwidth, cheight, cpt_lvl);
