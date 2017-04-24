@@ -40,6 +40,7 @@ function init(){
 	WorldObject.game_start = true; //0 start : 1 middle-game;
 	WorldObject.pause = false;
 	WorldObject.end = false;
+	WorldObject.skip = 0;
 	pause_screen = new createjs.Bitmap("../ressources/pause.png");
 	pause_screen.visible = false;
 	stage.addChild(pause_screen);
@@ -60,11 +61,42 @@ function init(){
 	levels= Level.loadLevels(cwidth, cheight, cpt_lvl);
 	stage.update();
 	document.getElementById("loading").style.visibility= "hidden";
-	gameLoop();
+	document.getElementById("rules").style.visibility= "";
+	rules();
 }
 
 //***********************************
-
+function rules() {
+	document.onkeydown = (e) =>  {
+	if(e.keyCode==32){		//space
+		WorldObject.skip++;
+	}
+	else if(e.keyCode==13){		//enter
+		WorldObject.skip=8;
+	}
+	if(WorldObject.skip>0)
+		if(WorldObject.skip==1)
+			document.getElementById("rules_img").src = "../ressources/rules_2.png";
+		else if(WorldObject.skip==2)
+			document.getElementById("rules_img").src = "../ressources/rules_3.png";
+		else if(WorldObject.skip==3)
+			document.getElementById("rules_img").src = "../ressources/rules_4.png";
+		else if(WorldObject.skip==4)
+			document.getElementById("rules_img").src = "../ressources/rules_5.png";
+		else if(WorldObject.skip==5)
+			document.getElementById("rules_img").src = "../ressources/rules_6.png";
+		else if(WorldObject.skip==6)
+			document.getElementById("rules_img").src = "../ressources/rules_7.png";
+		else if(WorldObject.skip==7)
+			document.getElementById("rules_img").src = "../ressources/rules_8.png";
+		else if(WorldObject.skip==8){
+			document.getElementById("rules").style.visibility= "hidden";
+			gameLoop();
+		}
+	};
+	setTimeout(rules, 10);
+	
+}
 //**************gameLoop*********************
 function gameLoop() {
 	if(!WorldObject.end){

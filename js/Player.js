@@ -42,7 +42,6 @@ class Player{
 			this.keys[e.keyCode] = true;
 			if(e.keyCode == 27 || e.keyCode == 80){
 				WorldObject.pause = !WorldObject.pause;
-				
 			}
 		};
 		document.onkeyup = (e) => {
