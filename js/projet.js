@@ -67,13 +67,6 @@ function init(){
 
 //***********************************
 function rules() {
-	document.onkeydown = (e) =>  {
-	if(e.keyCode==32){		//space
-		WorldObject.skip++;
-	}
-	else if(e.keyCode==13){		//enter
-		WorldObject.skip=8;
-	}
 	if(WorldObject.skip>0)
 		if(WorldObject.skip==1)
 			document.getElementById("rules_img").src = "../ressources/rules_2.png";
@@ -91,11 +84,11 @@ function rules() {
 			document.getElementById("rules_img").src = "../ressources/rules_8.png";
 		else if(WorldObject.skip==8){
 			document.getElementById("rules").style.visibility= "hidden";
-			gameLoop();
 		}
-	};
-	setTimeout(rules, 10);
-	
+		if(WorldObject.skip<8)
+			setTimeout(rules, 10);
+		else
+			gameLoop();
 }
 //**************gameLoop*********************
 function gameLoop() {

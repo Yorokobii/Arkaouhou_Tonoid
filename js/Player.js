@@ -43,6 +43,12 @@ class Player{
 			if(e.keyCode == 27 || e.keyCode == 80){
 				WorldObject.pause = !WorldObject.pause;
 			}
+			if(e.keyCode==32){		//space
+				WorldObject.skip++;
+			}
+			else if(e.keyCode==13){		//enter
+				WorldObject.skip=8;
+			}
 		};
 		document.onkeyup = (e) => {
 			this.keys[e.keyCode] = false;
