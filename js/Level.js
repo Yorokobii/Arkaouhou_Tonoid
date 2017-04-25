@@ -248,7 +248,7 @@ class Level{
 	level.bricks.push(new Brick(1, 3, 13));
 	level.bricks.push(new Brick(1, 4, 13));
 	level.bricks.push(new Brick(1, 5, 13));
-	level.bricks.push(new Brick(8, 6, 13));
+	level.bricks.push(new Brick(1, 6, 13));
 	level.bricks.push(new Brick(1, 7, 13));
 	level.bricks.push(new Brick(1, 8, 13));
 	level.bricks.push(new Brick(1, 9, 13));
