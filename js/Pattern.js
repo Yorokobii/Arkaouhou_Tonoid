@@ -193,31 +193,55 @@ class Pattern{
 		else if(_level == 8){ //spirale de barres
 			var pjs_count = WorldObject.pjs.length;
 
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 220, 0, 3, 0));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 240, 0, 3, 0));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 240, 0, 3, 10));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 240, 0, 3, 20));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 240, 0, 3, 30));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 240, 0, 3, 40));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 240, 0, 3, 50));
 
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 222, 0, 3, 10));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 224, 0, 3, 20));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 226, 0, 3, 30));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 228, 0, 3, 40));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 230, 0, 3, 50));
-
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 228, 0, 3, 60));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 226, 0, 3, 70));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 224, 0, 3, 80));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 222, 0, 3, 90));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 220, 0, 3, 60));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 220, 0, 3, 70));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 220, 0, 3, 80));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 220, 0, 3, 90));
 			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 220, 0, 3, 100));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 220, 0, 3, 110));
 
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 218, 0, 3, 110));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 216, 0, 3, 120));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 214, 0, 3, 130));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 212, 0, 3, 140));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 210, 0, 3, 150));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 200, 0, 3, 120));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 200, 0, 3, 130));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 200, 0, 3, 140));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 200, 0, 3, 150));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 200, 0, 3, 160));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 200, 0, 3, 170));
 
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 212, 0, 3, 160));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 214, 0, 3, 170));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 216, 0, 3, 180));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 218, 0, 3, 190));
-			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 220, 0, 3, 200));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 180, 0, 3, 180));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 180, 0, 3, 190));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 180, 0, 3, 200));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 180, 0, 3, 210));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 180, 0, 3, 220));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 180, 0, 3, 230));
+
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 160, 0, 3, 240));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 160, 0, 3, 250));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 160, 0, 3, 260));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 160, 0, 3, 270));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 160, 0, 3, 280));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 160, 0, 3, 290));
+
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 140, 0, 3, 300));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 140, 0, 3, 310));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 140, 0, 3, 320));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 140, 0, 3, 330));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 140, 0, 3, 340));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 140, 0, 3, 350));
+
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 120, 0, 3, 360));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 120, 0, 3, 370));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 120, 0, 3, 380));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 120, 0, 3, 390));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 120, 0, 3, 400));
+			WorldObject.pjs.push(new PJ(brick_posX+24, brick_posY, 120, 0, 3, 410));
+
 
 			for(var i=pjs_count; i<WorldObject.pjs.length; ++i){
 	 			WorldObject.pjs[i].draw(stage);
