@@ -63,6 +63,9 @@ function init(){
 	document.getElementById("loading").style.visibility= "hidden";
 	document.getElementById("rules").style.visibility= "";
 	rules();
+
+	audio = new Audio("../ressources/Neutralizer - Space Origins.mp3");
+	audio.play();
 }
 
 //***********************************
@@ -146,6 +149,7 @@ function gameLoop() {
 //************************
 
 function endGame(victory) {
+	levels.audio.pause();
 	if (victory)
 		document.getElementById("victory").style.visibility= "";
 	else
@@ -173,6 +177,7 @@ function nextLevel() {
 	if (cpt_lvl>=6) {
 		endGame(true);
 	}
+	levels.audio.pause();
 	levels= Level.loadLevels(cwidth, cheight, cpt_lvl);
 	stage.update();
 	npb.speed=3;
