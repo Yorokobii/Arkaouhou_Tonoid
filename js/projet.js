@@ -58,14 +58,12 @@ function init(){
 	WorldObject.pjs = [];
 	WorldObject.bonus = [];
 	cpt_lvl= 1;
-	levels= Level.loadLevels(cwidth, cheight, cpt_lvl);
+	levels = Level.loadLevels(cwidth, cheight, cpt_lvl);
+	levels.audio.pause();
 	stage.update();
 	document.getElementById("loading").style.visibility= "hidden";
 	document.getElementById("rules").style.visibility= "";
 	rules();
-
-	audio = new Audio("ressources/Neutralizer - Space Origins.mp3");
-	audio.play();
 }
 
 //***********************************
@@ -90,13 +88,16 @@ function rules() {
 		}
 		if(WorldObject.skip<8)
 			setTimeout(rules, 10);
-		else
+		else{
+			levels.audio.play();
 			setTimeout(gameLoop, 200);
+		}
 }
 //**************gameLoop*********************
 function gameLoop() {
 	if(!WorldObject.end){
 		if(!WorldObject.pause){
+			if(levels.audio.paused) levels.audio.play();
 			pause_screen.visible = false;
 			if(!WorldObject.game_start){
 				for(var i=0; i<WorldObject.pjs.length; ++i){
@@ -139,6 +140,7 @@ function gameLoop() {
 			stage.update();
 		}
 		else{
+			if(!levels.audio.paused) levels.audio.pause();
 			pause_screen.visible = true;
 			stage.update();
 		}
