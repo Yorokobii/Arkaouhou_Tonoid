@@ -150,10 +150,16 @@ function gameLoop() {
 
 function endGame(victory) {
 	levels.audio.pause();
-	if (victory)
+	if (victory){
 		document.getElementById("victory").style.visibility= "";
-	else
+		var audio = new Audio("../ressources/won.mp3");
+		audio.play();
+	}
+	else{
 		document.getElementById("defeat").style.visibility= "";
+		var audio = new Audio("../ressources/lost.mp3");
+		audio.play();
+	}
 
 	WorldObject.end = true;
 }
