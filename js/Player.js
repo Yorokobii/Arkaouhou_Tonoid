@@ -24,8 +24,8 @@ class Player{
 		//////////
 
 		//load the bitmap
-		this.hitboxPJ = new createjs.Bitmap("../ressources/core.png");
-		this.hitboxB = new createjs.Bitmap("../ressources/bar.png");
+		this.hitboxPJ = new createjs.Bitmap("ressources/core.png");
+		this.hitboxB = new createjs.Bitmap("ressources/bar.png");
 
 		this.hitboxPJ.image.onload = () => {
 			this.PJbounds = this.hitboxPJ.getBounds();

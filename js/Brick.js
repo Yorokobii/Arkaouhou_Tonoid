@@ -1,7 +1,7 @@
 class Brick extends Object{
 	constructor(_level, _x, _y){
 		//atributes
-		super("../ressources/brick_level_" + _level + ".jpg");
+		super("ressources/brick_level_" + _level + ".jpg");
 
 		this.bitmap.setTransform((_x*64)+15, (_y*16)+50);
 
@@ -9,7 +9,7 @@ class Brick extends Object{
 	}
 
 	new_brick(_level, _x, _y, stage){
-		this.level_img = "../ressources/brick_level_" + this.level + ".jpg";
+		this.level_img = "ressources/brick_level_" + this.level + ".jpg";
 
 		this.bitmap = new createjs.Bitmap(this.level_img);
 		this.bitmap.setTransform(_x, _y);

@@ -63,7 +63,7 @@ class Level{
 			level.availableBricks.push(level.bricks[i]);
 		}
 
-		level.audio = new Audio("../ressources/lvl1.mp3");
+		level.audio = new Audio("ressources/lvl1.mp3");
 		level.audio.loop = true;
 		level.audio.play();
 
@@ -91,7 +91,7 @@ class Level{
 			level.availableBricks.push(level.bricks[i]);
 		}
 
-		level.audio = new Audio("../ressources/lvl2.mp3");
+		level.audio = new Audio("ressources/lvl2.mp3");
 		level.audio.loop = true;
 		level.audio.play();
 
@@ -144,7 +144,7 @@ class Level{
 			level.availableBricks.push(level.bricks[i]);
 		}
 
-		level.audio = new Audio("../ressources/lvl3.mp3");
+		level.audio = new Audio("ressources/lvl3.mp3");
 		level.audio.loop = true;
 		level.audio.play();
 
@@ -187,7 +187,7 @@ class Level{
 		level.availableBricks.push(level.bricks[i]);
 	}
 
-	level.audio = new Audio("../ressources/lvl4.mp3");
+	level.audio = new Audio("ressources/lvl4.mp3");
 	level.audio.loop = true;
 	level.audio.play();
 
@@ -319,7 +319,7 @@ class Level{
 		level.availableBricks.push(level.bricks[i]);
 	}
 
-	level.audio = new Audio("../ressources/lvl5.mp3");
+	level.audio = new Audio("ressources/lvl5.mp3");
 	level.audio.loop = true;
 	level.audio.play();
 

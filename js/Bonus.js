@@ -1,7 +1,7 @@
 class Bonus extends Object{
 	constructor(posX, posY, _rand){
 		//atributes
-		super("../ressources/bonus.png");
+		super("ressources/bonus.png");
 
 		this.bitmap.setTransform(posX, posY);
 

@@ -41,7 +41,7 @@ function init(){
 	WorldObject.pause = false;
 	WorldObject.end = false;
 	WorldObject.skip = 0;
-	pause_screen = new createjs.Bitmap("../ressources/pause.png");
+	pause_screen = new createjs.Bitmap("ressources/pause.png");
 	pause_screen.visible = false;
 	stage.addChild(pause_screen);
 
@@ -64,7 +64,7 @@ function init(){
 	document.getElementById("rules").style.visibility= "";
 	rules();
 
-	audio = new Audio("../ressources/Neutralizer - Space Origins.mp3");
+	audio = new Audio("ressources/Neutralizer - Space Origins.mp3");
 	audio.play();
 }
 
@@ -72,19 +72,19 @@ function init(){
 function rules() {
 	if(WorldObject.skip>0)
 		if(WorldObject.skip==1)
-			document.getElementById("rules_img").src = "../ressources/rules_2.png";
+			document.getElementById("rules_img").src = "ressources/rules_2.png";
 		else if(WorldObject.skip==2)
-			document.getElementById("rules_img").src = "../ressources/rules_3.png";
+			document.getElementById("rules_img").src = "ressources/rules_3.png";
 		else if(WorldObject.skip==3)
-			document.getElementById("rules_img").src = "../ressources/rules_4.png";
+			document.getElementById("rules_img").src = "ressources/rules_4.png";
 		else if(WorldObject.skip==4)
-			document.getElementById("rules_img").src = "../ressources/rules_5.png";
+			document.getElementById("rules_img").src = "ressources/rules_5.png";
 		else if(WorldObject.skip==5)
-			document.getElementById("rules_img").src = "../ressources/rules_6.png";
+			document.getElementById("rules_img").src = "ressources/rules_6.png";
 		else if(WorldObject.skip==6)
-			document.getElementById("rules_img").src = "../ressources/rules_7.png";
+			document.getElementById("rules_img").src = "ressources/rules_7.png";
 		else if(WorldObject.skip==7)
-			document.getElementById("rules_img").src = "../ressources/rules_8.png";
+			document.getElementById("rules_img").src = "ressources/rules_8.png";
 		else if(WorldObject.skip==8){
 			document.getElementById("rules").style.visibility= "hidden";
 		}
@@ -152,12 +152,12 @@ function endGame(victory) {
 	levels.audio.pause();
 	if (victory){
 		document.getElementById("victory").style.visibility= "";
-		var audio = new Audio("../ressources/won.mp3");
+		var audio = new Audio("ressources/won.mp3");
 		audio.play();
 	}
 	else{
 		document.getElementById("defeat").style.visibility= "";
-		var audio = new Audio("../ressources/lost.mp3");
+		var audio = new Audio("ressources/lost.mp3");
 		audio.play();
 	}
 

@@ -1,7 +1,7 @@
 class HUD extends Object{
 	constructor(posX, posY, _rand){
 		//atributes
-		super("../ressources/HUD.png");
+		super("ressources/HUD.png");
 
 		this.ball_speed = new createjs.Shape();
 		this.ball_speed.graphics.beginFill("green").drawRect(400, 5, 400, 40);
@@ -12,11 +12,11 @@ class HUD extends Object{
 		this.power_meter_count = new createjs.Shape();
 
 		this.lifes = [
-			{first: new createjs.Bitmap("../ressources/5h.png"), second: new createjs.Bitmap("../ressources/3-4h.png"), third: new createjs.Bitmap("../ressources/1-2h.png")},
-			{first: new createjs.Bitmap("../ressources/5h.png"), second: new createjs.Bitmap("../ressources/3-4h.png"), third: new createjs.Bitmap("../ressources/1-2h.png")},
-			{first: new createjs.Bitmap("../ressources/5h.png"), second: new createjs.Bitmap("../ressources/3-4h.png"), third: null},
-			{first: new createjs.Bitmap("../ressources/5h.png"), second: new createjs.Bitmap("../ressources/3-4h.png"), third: null},
-			{first: new createjs.Bitmap("../ressources/5h.png"), second: null, third: null}
+			{first: new createjs.Bitmap("ressources/5h.png"), second: new createjs.Bitmap("ressources/3-4h.png"), third: new createjs.Bitmap("ressources/1-2h.png")},
+			{first: new createjs.Bitmap("ressources/5h.png"), second: new createjs.Bitmap("ressources/3-4h.png"), third: new createjs.Bitmap("ressources/1-2h.png")},
+			{first: new createjs.Bitmap("ressources/5h.png"), second: new createjs.Bitmap("ressources/3-4h.png"), third: null},
+			{first: new createjs.Bitmap("ressources/5h.png"), second: new createjs.Bitmap("ressources/3-4h.png"), third: null},
+			{first: new createjs.Bitmap("ressources/5h.png"), second: null, third: null}
 		]
 
 		this.lifes.forEach(function(life){
