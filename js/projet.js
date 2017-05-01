@@ -15,9 +15,7 @@ var cpt_lvl;
 
 function lost(){
 	player.immuned = 100;
-	// stage.removeAllChildren();
-	// stage.update();
-	// iahef.iuaef();
+	WorldObject.score_change(-150);
 }
 
 //*****************init function**************
@@ -52,6 +50,18 @@ function init(){
 	npb = new NPB();
 	npb.draw(stage);
 	
+	WorldObject.score = 0;
+	WorldObject.score_txt = new createjs.Text("score : "+WorldObject.score, "20px Comic Sans MS", "#000000");
+	WorldObject.score_txt.x = 2;
+	WorldObject.score_txt.y = 52;
+
+	WorldObject.score_change = function(points){
+		WorldObject.score += points;
+		WorldObject.score_txt.text = "score : "+Math.floor(WorldObject.score);
+	};
+
+	stage.addChild(WorldObject.score_txt);
+
 	WorldObject.hud = new HUD();
 	WorldObject.hud.draw(stage);
 
@@ -102,7 +112,7 @@ function gameLoop() {
 			if(!WorldObject.game_start){
 				for(var i=0; i<WorldObject.pjs.length; ++i){
 					WorldObject.pjs[i].move(player);
-					if(WorldObject.pjs[i].collision_player(player) && player.immuned == 0)
+					if(WorldObject.pjs[i] != null && WorldObject.pjs[i].collision_player(player) && player.immuned == 0)
 						lost();
 				}
 
@@ -123,6 +133,7 @@ function gameLoop() {
 				for(var i=0; i<WorldObject.bonus.length; ++i){
 					WorldObject.bonus[i].move(player, stage);
 				}
+				WorldObject.score_change(-0.01);
 			}
 			else{
 				player.Handling(npb, stage);
@@ -150,6 +161,10 @@ function gameLoop() {
 
 //************************
 
+function WriteScore(){
+	
+}
+
 function endGame(victory) {
 	levels.audio.pause();
 	if (victory){
@@ -163,6 +178,8 @@ function endGame(victory) {
 		audio.play();
 	}
 
+	WriteScore();
+
 	WorldObject.end = true;
 }
 
@@ -170,6 +187,7 @@ function nextLevel() {
 	player.Handling(npb, stage);
 	for (var i=0; i < WorldObject.pjs.length; ++i) {
 		stage.removeChild(WorldObject.pjs[i].bitmap);
+		WorldObject.score_change(1);
 	}
 	WorldObject.pjs=[];
 	stage.update();

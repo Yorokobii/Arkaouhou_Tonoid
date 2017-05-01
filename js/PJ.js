@@ -67,6 +67,10 @@ class PJ extends Object{
 				if(this.bitmap.y < 50){//up
 					this.directionY = -this.directionY;
 				}
+				else if(this.bitmap.y > WorldObject.cheight){
+					WorldObject.score_change(1);
+					WorldObject.pjs.splice(WorldObject.pjs.indexOf(this),1);
+				}
 				//////
 			}
 			else
