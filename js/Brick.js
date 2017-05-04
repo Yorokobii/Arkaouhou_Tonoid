@@ -49,6 +49,7 @@ class Brick extends Object{
 				stage.removeChild(this.bitmap);
 				Bonus.new_bonus(this.bitmap.x+20, this.bitmap.y, stage);
 				this.loaded = false;
+				WorldObject.mult += 1;
 				WorldObject.score_change(10);
 				if(this.level == 0){
 					return true;

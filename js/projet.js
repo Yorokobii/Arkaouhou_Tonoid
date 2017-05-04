@@ -50,13 +50,19 @@ function init(){
 	npb = new NPB();
 	npb.draw(stage);
 	
+	WorldObject.mult = 1;
 	WorldObject.score = 0;
 	WorldObject.score_txt = new createjs.Text("score : "+WorldObject.score, "20px Comic Sans MS", "#000000");
 	WorldObject.score_txt.x = 2;
 	WorldObject.score_txt.y = 52;
 
 	WorldObject.score_change = function(points){
-		WorldObject.score += points;
+		if(points < -1)
+			WorldObject.mult = 1;
+		if(points > 0)
+			WorldObject.score += points*WorldObject.mult;
+		else
+			WorldObject.score += points;
 		WorldObject.score_txt.text = "score : "+Math.floor(WorldObject.score);
 	};
 
