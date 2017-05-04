@@ -27,21 +27,21 @@ class HUD extends Object{
 				life.third.visible = false;
 		});
 
-		this.lifes[0].first.setTransform(150, 0, 0.1, 0.1);
-		this.lifes[0].second.setTransform(150, 0, 0.09, 0.09);
-		this.lifes[0].third.setTransform(150, 0, 0.09, 0.09);
+		this.lifes[0].first.setTransform(150, 0);
+		this.lifes[0].second.setTransform(150, 0);
+		this.lifes[0].third.setTransform(150, 0);
 
-		this.lifes[1].first.setTransform(210, 0, 0.1, 0.1);
-		this.lifes[1].second.setTransform(210, 0, 0.09, 0.09);
-		this.lifes[1].third.setTransform(210, 0, 0.09, 0.09);
+		this.lifes[1].first.setTransform(210, 0);
+		this.lifes[1].second.setTransform(210, 0);
+		this.lifes[1].third.setTransform(210, 0);
 
-		this.lifes[2].first.setTransform(270, 0, 0.1, 0.1);
-		this.lifes[2].second.setTransform(270, 0, 0.09, 0.09);
+		this.lifes[2].first.setTransform(270, 0);
+		this.lifes[2].second.setTransform(270, 0);
 
-		this.lifes[3].first.setTransform(330, 0, 0.1, 0.1);
-		this.lifes[3].second.setTransform(330, 0, 0.09, 0.09);
+		this.lifes[3].first.setTransform(330, 0);
+		this.lifes[3].second.setTransform(330, 0);
 
-		this.lifes[4].first.setTransform(390, 0, 0.1, 0.1);
+		this.lifes[4].first.setTransform(390, 0);
 
 		this.current_lives = 5;
 	}
