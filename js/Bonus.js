@@ -24,6 +24,7 @@ class Bonus extends Object{
 			if(this.bitmap.getTransformedBounds().intersects(player.hitboxPJ.getTransformedBounds())){
 				if(player.shock_wave_meter < player.shock_wave_meter_max){
 					player.shock_wave_meter += 1;
+					WorldObject.score_change(20);
 					WorldObject.hud.refresh(player, null);
 				}
 				stage.removeChild(this.bitmap);

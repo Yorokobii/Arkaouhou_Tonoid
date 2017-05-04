@@ -213,6 +213,13 @@ function nextLevel() {
 	levels= Level.loadLevels(cwidth, cheight, cpt_lvl);
 	stage.update();
 	npb.speed=3;
+	while(1){
+		var loaded = true;
+		for (var i=0; i < levels.availableBricks.length; ++i) 
+			loaded &= levels.availableBricks[i].loaded;
+		if(loaded)
+			break;
+	}
 	document.getElementById("loading").style.visibility= "hidden";
 
 }
